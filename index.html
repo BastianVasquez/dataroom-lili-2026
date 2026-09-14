@@ -1,0 +1,2730 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>LiLi App — Investor Data Room 2026</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <link rel="alternate icon" href="favicon.ico">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            /* LiLi Brand Palette (aligned to liliapp.cl) */
+            --primary: #5B2A86;
+            --primary-hover: #46206A;
+            --primary-light: #8B5CF6;
+            --primary-soft: #B79CE0;
+            --primary-fade: #F4ECFB;
+            --primary-fade-2: #FAF5FF;
+            --gradient-brand: linear-gradient(135deg, #5B2A86 0%, #8B5CF6 60%, #B79CE0 100%);
+            --gradient-brand-dark: linear-gradient(135deg, #2E0E54 0%, #5B2A86 100%);
+
+            --secondary: #10B981;
+            --accent-orange: #F59E0B;
+            --accent-red: #EF4444;
+            --accent-blue: #3B82F6;
+
+            --dark: #1A0F2E;
+            --text-main: #3F3A56;
+            --text-muted: #7A7592;
+            --bg-body: #FBF9FE;
+            --bg-card: #FFFFFF;
+            --border-light: #EDE7F6;
+            --border-soft: #F3EEFA;
+
+            --shadow-xs: 0 1px 2px 0 rgba(91, 42, 134, 0.04);
+            --shadow-sm: 0 2px 6px -1px rgba(91, 42, 134, 0.06), 0 1px 3px rgba(91, 42, 134, 0.04);
+            --shadow-md: 0 6px 16px -4px rgba(91, 42, 134, 0.08), 0 2px 6px rgba(91, 42, 134, 0.05);
+            --shadow-lg: 0 16px 40px -10px rgba(91, 42, 134, 0.15), 0 6px 14px rgba(91, 42, 134, 0.07);
+            --shadow-hover: 0 24px 50px -15px rgba(91, 42, 134, 0.22), 0 10px 20px -8px rgba(91, 42, 134, 0.08);
+
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --radius-xl: 28px;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(91, 42, 134, 0.05) 0%, transparent 35%);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .sidebar {
+            width: 290px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            z-index: 50;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            padding: 36px 24px 30px;
+            background: var(--gradient-brand-dark);
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        .brand::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -40%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .brand::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(183, 156, 224, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .brand img { max-width: 130px; margin-bottom: 14px; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35)); position: relative; z-index: 2; }
+        .brand-subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-menu { flex: 1; overflow-y: auto; padding: 20px 14px 30px; }
+        .nav-menu::-webkit-scrollbar { width: 4px; }
+        .nav-menu::-webkit-scrollbar-thumb { background-color: var(--border-light); border-radius: 10px; }
+
+        .nav-group {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 0 14px;
+            margin: 22px 0 8px;
+        }
+        .nav-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            margin-bottom: 3px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .nav-item i { width: 22px; font-size: 14px; margin-right: 12px; opacity: 0.75; text-align: center; transition: transform 0.2s; }
+        .nav-item:hover { background-color: var(--primary-fade-2); color: var(--primary); }
+        .nav-item:hover i { opacity: 1; transform: scale(1.1); }
+        .nav-item.active {
+            background: var(--gradient-brand);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 6px 14px -4px rgba(91, 42, 134, 0.4);
+        }
+        .nav-item.active i { opacity: 1; color: #fff; }
+
+        /* ================= MAIN ================= */
+        .main-wrapper { flex: 1; overflow-y: auto; position: relative; scroll-behavior: smooth; display: flex; flex-direction: column; }
+        .main-wrapper::-webkit-scrollbar { width: 10px; }
+        .main-wrapper::-webkit-scrollbar-thumb { background-color: var(--primary-soft); border-radius: 10px; border: 3px solid var(--bg-body); }
+        .main-wrapper::-webkit-scrollbar-thumb:hover { background-color: var(--primary-light); }
+
+        /* Top Bar */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(251, 249, 254, 0.85);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            padding: 18px 40px;
+            border-bottom: 1px solid rgba(237, 231, 246, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 40;
+        }
+        .top-bar h2 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.3px;
+            margin: 0;
+        }
+
+        .top-actions { display: flex; gap: 10px; align-items: center; }
+
+        .search-container { position: relative; display: flex; align-items: center; }
+        .search-container i { position: absolute; left: 16px; color: var(--text-muted); font-size: 13px; pointer-events: none; }
+        .search-input {
+            padding: 11px 16px 11px 40px;
+            border: 1px solid var(--border-light);
+            background: var(--white);
+            border-radius: 999px;
+            font-size: 13px;
+            width: 220px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            font-family: inherit;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .search-input:focus { width: 300px; border-color: var(--primary-light); box-shadow: 0 0 0 4px var(--primary-fade); }
+        .search-input::placeholder { color: var(--text-muted); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            font-family: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-outline { background: var(--white); color: var(--text-main); border: 1px solid var(--border-light); }
+        .btn-outline:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+        .btn-primary {
+            background: var(--gradient-brand);
+            color: var(--white);
+            box-shadow: 0 6px 14px -4px rgba(91, 42, 134, 0.4);
+        }
+        .btn-primary:hover { box-shadow: 0 12px 24px -6px rgba(91, 42, 134, 0.5); transform: translateY(-2px); }
+
+        /* Content Container */
+        .content { padding: 48px; max-width: 1180px; margin: 0 auto; width: 100%; flex: 1; }
+        .section { display: none; animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(12px); }
+        .section.active { display: block; }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* ================= TYPOGRAPHY ================= */
+        h1.page-title {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 16px;
+            letter-spacing: -1.8px;
+            line-height: 1.05;
+            background: linear-gradient(135deg, #1A0F2E 0%, #5B2A86 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        p.lead { font-size: 18px; color: var(--text-muted); margin-bottom: 48px; line-height: 1.65; font-weight: 400; max-width: 860px; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin: 56px 0 28px;
+            padding-bottom: 14px;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-light) 0%, transparent 100%);
+        }
+        .section-header h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-header h3::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 24px;
+            background: var(--gradient-brand);
+            border-radius: 6px;
+        }
+
+        p { margin-bottom: 18px; color: var(--text-main); }
+        strong { color: var(--dark); font-weight: 700; }
+
+        /* ================= GRIDS ================= */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 32px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 32px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+
+        /* KPI Cards */
+        .kpi-card {
+            background: var(--bg-card);
+            padding: 26px 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-brand);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        .kpi-card.accent-blue::before { background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%); }
+        .kpi-card.accent-green::before { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); }
+        .kpi-card.accent-orange::before { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+        .kpi-card.accent-red::before { background: linear-gradient(135deg, #EF4444 0%, #F87171 100%); }
+        .kpi-card.accent-soft::before { background: linear-gradient(135deg, #8B5CF6 0%, #B79CE0 100%); }
+        .kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--primary-soft); }
+
+        .kpi-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 10px; }
+        .kpi-value { font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 6px; letter-spacing: -1.5px; line-height: 1.1; }
+        .kpi-trend { font-size: 13px; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            margin-bottom: 22px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .info-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-soft); }
+        .info-card.highlight {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+            border-color: var(--primary-fade);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card.highlight::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--gradient-brand);
+        }
+        .info-card h4 { font-size: 17px; color: var(--dark); margin-bottom: 14px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 10px; }
+        .info-card h4 i { color: var(--primary); font-size: 18px; }
+
+        /* Lists */
+        .custom-list { list-style: none; margin-bottom: 16px; }
+        .custom-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-main); }
+        .custom-list li::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--secondary);
+            font-size: 13px;
+            width: 18px;
+            height: 18px;
+            background: #DCFCE7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-list.purple li::before {
+            color: var(--primary);
+            background: var(--primary-fade);
+            content: '\f00c';
+        }
+        .custom-list.warning li::before {
+            color: var(--accent-orange);
+            background: #FEF3C7;
+        }
+        .custom-list.info li::before {
+            color: var(--accent-blue);
+            background: #DBEAFE;
+        }
+
+        /* Badges */
+        .badge-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--bg-body);
+            color: var(--text-main);
+            border: 1px solid var(--border-light);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .badge.primary { background: var(--primary-fade); color: var(--primary); border-color: rgba(91, 42, 134, 0.12); }
+        .badge.success { background: #DCFCE7; color: #059669; border-color: #BBF7D0; }
+        .badge.warning { background: #FEF3C7; color: #D97706; border-color: #FDE68A; }
+        .badge.info { background: #DBEAFE; color: #2563EB; border-color: #BFDBFE; }
+        .badge:hover { transform: translateY(-1px); box-shadow: var(--shadow-xs); }
+
+        /* Quote box */
+        .quote-box {
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--dark);
+            font-style: italic;
+            padding: 36px 40px 36px 64px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-fade-2) 100%);
+            border-radius: var(--radius-lg);
+            margin: 40px 0;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            line-height: 1.6;
+            letter-spacing: -0.3px;
+            border: 1px solid var(--border-light);
+        }
+        .quote-box::before {
+            content: '\f10d';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 28px;
+            top: 28px;
+            font-size: 28px;
+            color: var(--primary-soft);
+            opacity: 0.7;
+        }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 36px; margin: 32px 0; }
+        .timeline::before { content: ''; position: absolute; left: 13px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--primary) 0%, var(--primary-soft) 100%); border-radius: 2px; }
+        .timeline-item { position: relative; margin-bottom: 24px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-badge {
+            position: absolute;
+            left: -36px;
+            top: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gradient-brand);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 1;
+            box-shadow: 0 4px 10px -2px rgba(91, 42, 134, 0.35);
+            border: 3px solid var(--bg-body);
+        }
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 22px 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xs);
+            transition: all 0.25s;
+        }
+        .timeline-content:hover { box-shadow: var(--shadow-md); border-color: var(--primary-soft); transform: translateX(2px); }
+        .timeline-content h4 { color: var(--primary); margin-bottom: 8px; font-size: 16px; }
+        .timeline-content p { margin: 0; font-size: 14px; }
+
+        /* File cards */
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+        .file-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: var(--dark);
+            box-shadow: var(--shadow-xs);
+            position: relative;
+            overflow: hidden;
+        }
+        .file-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--border-light); transition: background 0.3s; }
+        .file-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--primary-soft); }
+        .file-card:hover::before { background: var(--gradient-brand); }
+        .file-card[data-pending] { opacity: 0.72; cursor: not-allowed; background: repeating-linear-gradient(135deg, var(--bg-card) 0px, var(--bg-card) 14px, var(--primary-fade-2) 14px, var(--primary-fade-2) 28px); }
+        .file-card[data-pending]:hover { transform: none; box-shadow: var(--shadow-sm); }
+        .file-card[data-pending] .file-meta { color: var(--accent-orange); font-weight: 600; }
+        .file-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 16px; transition: transform 0.3s; flex-shrink: 0; }
+        .file-card:hover .file-icon { transform: scale(1.08); }
+        .file-info { flex: 1; min-width: 0; }
+        .file-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: var(--dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .file-meta { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+        .type-pdf .file-icon { background: #FEE2E2; color: #EF4444; }
+        .type-pdf:hover::before { background: linear-gradient(180deg, #EF4444, #F87171); }
+        .type-xls .file-icon { background: #DCFCE7; color: #10B981; }
+        .type-xls:hover::before { background: linear-gradient(180deg, #10B981, #34D399); }
+        .type-doc .file-icon { background: #DBEAFE; color: #2563EB; }
+        .type-doc:hover::before { background: linear-gradient(180deg, #2563EB, #60A5FA); }
+
+        /* Data table */
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { padding: 14px 0; border-bottom: 1px solid var(--border-light); text-align: left; font-size: 14px; }
+        .data-table th { font-weight: 600; color: var(--text-muted); width: 40%; }
+        .data-table tr:last-child th, .data-table tr:last-child td { border-bottom: none; }
+
+        /* Helpers */
+        .text-primary { color: var(--primary); }
+        .text-success { color: var(--secondary); }
+        .text-danger { color: var(--accent-red); }
+        .text-warning { color: var(--accent-orange); }
+        .text-info { color: var(--accent-blue); }
+        mark { background: linear-gradient(120deg, #FEF08A 0%, #FDE047 100%); padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #92400E; }
+
+        /* Tooltip */
+        .tooltip { position: relative; display: inline-block; cursor: help; margin-left: 6px; color: var(--primary-light); font-size: 14px; }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: left;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            position: absolute;
+            z-index: 100;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            line-height: 1.5;
+            font-weight: 400;
+            box-shadow: var(--shadow-lg);
+            pointer-events: none;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+
+        /* Dropdown */
+        .dropdown-item:hover { background: var(--primary-fade) !important; color: var(--primary) !important; }
+        .dropdown-item:hover i { color: var(--primary) !important; }
+
+        /* Hero block on dashboard */
+        .hero {
+            background: var(--gradient-brand-dark);
+            border-radius: var(--radius-xl);
+            padding: 44px 48px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 36px;
+            box-shadow: 0 20px 50px -12px rgba(46, 14, 84, 0.4);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(183, 156, 224, 0.25) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 720px; }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px);
+            margin-bottom: 20px;
+        }
+        .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; color: #fff; }
+        .hero h1 .accent { background: linear-gradient(135deg, #C084FC 0%, #E9D5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.88); margin-bottom: 24px; }
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+        .hero-meta-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; }
+        .hero-meta-item i { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 13px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding: 36px; }
+            .hero h1 { font-size: 34px; }
+        }
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow: auto; height: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-light); flex-shrink: 0; }
+            .brand { border-radius: 0; padding: 24px; }
+            .nav-menu { display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 12px; -webkit-overflow-scrolling: touch; }
+            .nav-group { display: none; }
+            .nav-item { white-space: nowrap; margin-bottom: 0; margin-right: 8px; padding: 9px 14px; font-size: 13px; }
+            .main-wrapper { overflow: visible; height: auto; }
+            .top-bar { padding: 16px; flex-direction: column; gap: 14px; align-items: flex-start; }
+            .top-actions { width: 100%; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+            .search-input, .search-input:focus { width: 100%; }
+            .content { padding: 24px 16px; }
+            .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .hero { padding: 28px 24px; border-radius: var(--radius-lg); }
+            .hero h1 { font-size: 28px; }
+            h1.page-title { font-size: 32px; }
+            .quote-box { padding: 24px 20px 24px 50px; font-size: 16px; }
+            .timeline-badge { left: -32px; }
+            .timeline { padding-left: 32px; }
+            .kpi-value { font-size: 28px; }
+        }
+
+        /* Print */
+        @media print {
+            .sidebar, .top-bar { display: none !important; }
+            .main-wrapper { margin: 0; overflow: visible; background: white; }
+            .content { padding: 0; max-width: 100%; }
+            .section { display: block !important; page-break-after: always; opacity: 1; transform: none; animation: none; }
+            body { background: white; font-size: 11pt; }
+            .kpi-card, .info-card, .file-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+            .badge { border: 1px solid #ccc; background: white; color: black; }
+            .quote-box { background: white; border: 1px solid #ccc; }
+            .hero { background: #2E0E54 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            h1.page-title { -webkit-text-fill-color: #1A0F2E; background: none; }
+        }
+
+        /* ============================================================
+           VISUAL POLISH LAYER · animations, reflections, attention-grabs
+           ============================================================ */
+
+        /* --- Keyframes library --- */
+        @keyframes shimmer {
+            0%   { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes shine-sweep {
+            0%   { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
+            20%  { opacity: 1; }
+            100% { transform: translateX(220%) skewX(-20deg); opacity: 0; }
+        }
+        @keyframes float-y {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-6px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.55); }
+            50%      { box-shadow: 0 0 0 14px rgba(139, 92, 246, 0); }
+        }
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.6); opacity: 0.6; }
+        }
+        @keyframes gradient-pan {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes stagger-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes ring-rotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes badge-pop {
+            0%   { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- Animated, shimmering page title --- */
+        h1.page-title {
+            background: linear-gradient(110deg, #1A0F2E 0%, #5B2A86 30%, #8B5CF6 55%, #5B2A86 80%, #1A0F2E 100%);
+            background-size: 220% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-pan 14s ease-in-out infinite;
+        }
+
+        /* --- Section reveal: stagger children when section becomes active --- */
+        .section.active > * { animation: stagger-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .section.active > *:nth-child(1) { animation-delay: 0.02s; }
+        .section.active > *:nth-child(2) { animation-delay: 0.08s; }
+        .section.active > *:nth-child(3) { animation-delay: 0.14s; }
+        .section.active > *:nth-child(4) { animation-delay: 0.20s; }
+        .section.active > *:nth-child(5) { animation-delay: 0.26s; }
+        .section.active > *:nth-child(6) { animation-delay: 0.32s; }
+        .section.active > *:nth-child(7) { animation-delay: 0.38s; }
+        .section.active > *:nth-child(8) { animation-delay: 0.44s; }
+        .section.active > *:nth-child(n+9) { animation-delay: 0.5s; }
+
+        /* --- Section-header animated gradient bar + soft underline glow --- */
+        .section-header h3::before {
+            background: linear-gradient(180deg, #8B5CF6 0%, #5B2A86 50%, #2E0E54 100%);
+            background-size: 100% 200%;
+            animation: gradient-pan 6s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+        }
+        .section-header::after {
+            background: linear-gradient(90deg, var(--primary-soft) 0%, var(--border-light) 35%, transparent 100%);
+        }
+
+        /* --- KPI cards: shine sweep on hover + lifted reflection --- */
+        .kpi-card { will-change: transform; }
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+            transform: translateX(-120%) skewX(-20deg);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+        .kpi-card:hover::after { animation: shine-sweep 0.95s ease-out; }
+        .kpi-card:hover { transform: translateY(-6px) scale(1.012); }
+        .kpi-card:hover .kpi-value {
+            background: linear-gradient(135deg, #5B2A86 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .kpi-card .kpi-value { transition: all 0.3s ease; }
+
+        /* Subtle reflection underneath KPI value, only when card is hero/important */
+        .kpi-card.accent-soft, .kpi-card.accent-blue { position: relative; }
+        .kpi-card.accent-soft::before, .kpi-card.accent-blue::before { box-shadow: 0 0 18px rgba(139, 92, 246, 0.35); }
+
+        /* --- Info-card highlight: animated gradient border-glow --- */
+        .info-card.highlight {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 60%, #F4ECFB 100%);
+            background-size: 180% 180%;
+            animation: gradient-pan 12s ease-in-out infinite;
+        }
+        .info-card.highlight::before {
+            background: linear-gradient(90deg, #5B2A86 0%, #8B5CF6 33%, #B79CE0 66%, #5B2A86 100%);
+            background-size: 200% 100%;
+            animation: shimmer 4s linear infinite;
+        }
+        .info-card { backdrop-filter: saturate(120%); }
+        .info-card:hover { transform: translateY(-2px); }
+        .info-card h4 i { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .info-card:hover h4 i { transform: scale(1.18) rotate(-6deg); }
+
+        /* --- Dark / brand-gradient cards: scrolling holographic shine --- */
+        [style*="gradient-brand-dark"],
+        [style*="var(--gradient-brand-dark)"] {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        [style*="gradient-brand-dark"]::after,
+        [style*="var(--gradient-brand-dark)"]::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.10) 50%, transparent 70%);
+            background-size: 250% 100%;
+            animation: shimmer 9s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        [style*="gradient-brand-dark"] > *,
+        [style*="var(--gradient-brand-dark)"] > * { position: relative; z-index: 1; }
+
+        /* --- Badges: pop-in + primary pulse-ring on hover --- */
+        .badge { animation: badge-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+        .badge.primary { position: relative; }
+        .badge.primary:hover { animation: pulse-glow 1.4s ease-out infinite; }
+
+        /* --- Floating icons on info-cards and feature blocks --- */
+        .info-card.highlight i.fa-robot,
+        .info-card i.fa-bullseye,
+        .info-card i.fa-rocket,
+        .kpi-card i.fa-user-shield,
+        .kpi-card i.fa-magnifying-glass,
+        .kpi-card i.fa-arrow-pointer,
+        .kpi-card i.fa-trophy { animation: float-y 5s ease-in-out infinite; }
+
+        /* --- Status / live dots --- */
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+            margin-right: 8px;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+            animation: pulse-dot 1.8s ease-in-out infinite;
+            vertical-align: middle;
+        }
+
+        /* --- Nav-item: glowing left accent on active + smooth icon nudge --- */
+        .nav-item { position: relative; }
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 3px; height: 60%;
+            transform: translateY(-50%);
+            background: var(--gradient-brand);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+        }
+        .nav-item:hover i { transform: translateX(2px) scale(1.08); }
+
+        /* --- File-card hover: shine sweep --- */
+        .file-card { overflow: hidden; }
+        .file-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(139,92,246,0.10) 50%, transparent 100%);
+            transition: left 0.7s ease;
+            pointer-events: none;
+        }
+        .file-card:hover::after { left: 130%; }
+        .file-card:hover .file-icon { transform: scale(1.1) rotate(-4deg); }
+
+        /* --- Brand logo: gentle breathing glow --- */
+        .brand::before { animation: gradient-pan 18s ease-in-out infinite; background-size: 200% 200%; }
+
+        /* --- Top-bar scroll progress --- */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 290px; right: 0;
+            height: 3px;
+            background: var(--gradient-brand);
+            transform-origin: left center;
+            transform: scaleX(0);
+            z-index: 100;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+        }
+
+        /* --- KPI cards inside the dashboard hero get a richer treatment --- */
+        #dashboard .kpi-card .kpi-value {
+            background: linear-gradient(135deg, #1A0F2E 0%, #5B2A86 60%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Quote / press cards: light reflection on top edge --- */
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139,92,246,0.35), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .info-card:hover::after { opacity: 1; }
+
+        /* --- Custom-list bullets: gentle bounce on hover --- */
+        .custom-list li { transition: transform 0.2s ease; }
+        .custom-list li:hover { transform: translateX(4px); }
+        .custom-list li::before { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .custom-list li:hover::before { transform: scale(1.18); }
+
+        /* --- Disable heavy animations for users who prefer reduced motion --- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ============================================================ */
+        /*  SPLASH SCREEN  (Investor Intro · Pitch-consistent)         */
+        /* ============================================================ */
+        #lili-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: radial-gradient(ellipse at 20% 0%, #4A1F73 0%, #2E0E54 45%, #15071F 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 40px 24px;
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 0.85s cubic-bezier(0.7, 0, 0.3, 1), visibility 0.85s;
+        }
+        #lili-splash.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
+        #lili-splash::before {
+            content: '';
+            position: absolute; inset: -20%;
+            background:
+              radial-gradient(circle at 80% 90%, rgba(139, 92, 246, 0.35) 0%, transparent 40%),
+              radial-gradient(circle at 15% 80%, rgba(183, 156, 224, 0.18) 0%, transparent 38%);
+            filter: blur(40px);
+            animation: splashAura 14s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        #lili-splash::after {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+              linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 75%);
+            pointer-events: none;
+        }
+        @keyframes splashAura {
+            0% { transform: translate3d(0,0,0) scale(1); }
+            100% { transform: translate3d(-3%, 2%, 0) scale(1.08); }
+        }
+
+        .splash-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            animation: splashRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes splashRise {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .splash-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .splash-logo svg {
+            height: 36px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(183, 156, 224, 0.5));
+        }
+        .splash-logo svg path,
+        .splash-logo svg polygon,
+        .splash-logo svg rect { fill: #fff; }
+
+        .splash-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 13px;
+            border: 1px solid rgba(255,255,255,0.22);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+            border-radius: 999px;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: #E9DFFB;
+            margin-bottom: 18px;
+        }
+        .splash-eyebrow .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #B79CE0;
+            box-shadow: 0 0 0 0 rgba(183,156,224,0.6);
+            animation: splashDot 2.2s ease-out infinite;
+        }
+        @keyframes splashDot {
+            0%   { box-shadow: 0 0 0 0 rgba(183,156,224,0.6); }
+            70%  { box-shadow: 0 0 0 10px rgba(183,156,224,0); }
+            100% { box-shadow: 0 0 0 0 rgba(183,156,224,0); }
+        }
+
+        .splash-headline {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-size: clamp(22px, 3.2vw, 42px);
+            font-weight: 800;
+            line-height: 1.14;
+            letter-spacing: -0.022em;
+            margin: 0 0 14px;
+            color: #fff;
+        }
+        .splash-headline .accent {
+            background: linear-gradient(110deg, #C4A8EF 0%, #FFFFFF 45%, #B79CE0 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: splashShine 5.5s ease-in-out infinite alternate;
+        }
+        @keyframes splashShine {
+            from { background-position: 0% 50%; }
+            to   { background-position: 100% 50%; }
+        }
+        .splash-sub {
+            font-size: clamp(13px, 1.2vw, 15px);
+            line-height: 1.5;
+            color: rgba(255,255,255,0.75);
+            max-width: 560px;
+            margin: 0 auto 24px;
+            font-weight: 400;
+        }
+        .splash-sub strong { color: #fff; font-weight: 600; }
+
+        .splash-stats {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 680px;
+            margin: 0 auto 28px;
+        }
+        .splash-stat {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 12px 18px;
+            min-width: 130px;
+            flex: 1 1 120px;
+            backdrop-filter: blur(6px);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+        .splash-stat:hover { background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.28); }
+        .splash-stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 2px;
+            line-height: 1;
+        }
+        .splash-stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(255,255,255,0.58);
+            font-weight: 600;
+        }
+
+        .splash-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 30px;
+            background: linear-gradient(135deg, #fff 0%, #F4ECFB 100%);
+            color: #2E0E54;
+            border: none;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            box-shadow: 0 10px 28px -6px rgba(0,0,0,0.4);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .splash-cta::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(110deg, transparent 30%, rgba(91,42,134,0.15) 50%, transparent 70%);
+            transform: translateX(-110%);
+            transition: transform 0.6s ease;
+        }
+        .splash-cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 36px -6px rgba(0,0,0,0.5); }
+        .splash-cta:hover::before { transform: translateX(110%); }
+        .splash-cta i { transition: transform 0.25s ease; }
+        .splash-cta:hover i { transform: translateX(3px); }
+
+        .splash-footer {
+            margin-top: 16px;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: rgba(255,255,255,0.38);
+        }
+        .splash-footer kbd {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-family: inherit;
+            font-size: 10px;
+            margin: 0 3px;
+            color: rgba(255,255,255,0.65);
+        }
+
+        @media (max-width: 600px) {
+            .splash-stats { gap: 8px; }
+            .splash-stat { min-width: 100px; padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================ -->
+    <!--  SPLASH / INTRO SCREEN                                       -->
+    <!-- ============================================================ -->
+    <div id="lili-splash" role="dialog" aria-modal="true" aria-label="LiLi Investor Data Room intro">
+        <div class="splash-inner">
+
+            <!-- Logo -->
+            <div class="splash-logo">
+                <svg viewBox="0 0 936.5 286.46" xmlns="http://www.w3.org/2000/svg" aria-label="LiLi logo">
+                    <path d="M-1162.5,221.77l-130,75.75V508.23h260.09V297.52Zm86,182.73-86-49.68-86,49.68v-50l86-49.68,86,49.68Z" transform="translate(1292.5 -221.77)"/>
+                    <polygon points="322.5 4.23 388.5 4.23 388.5 233.23 529.85 233.23 529.85 286.46 322.77 286.46 322.5 4.23"/>
+                    <rect x="552.5" y="59.23" width="65" height="43"/>
+                    <rect x="552.5" y="124.23" width="65" height="162"/>
+                    <polygon points="641.5 4.23 707.5 4.23 707.5 233.23 848.85 233.23 848.85 286.46 641.77 286.46 641.5 4.23"/>
+                    <rect x="871.5" y="59.23" width="65" height="43"/>
+                    <rect x="871.5" y="124.23" width="65" height="162"/>
+                </svg>
+            </div>
+
+            <!-- Eyebrow pill -->
+            <div class="splash-eyebrow">
+                <span class="dot"></span>
+                Investor Data Room · Pre-Seed 2026
+            </div>
+
+            <!-- Main headline -->
+            <h1 class="splash-headline">
+                The most informal market in the world.<br>
+                <span class="accent">We're not just formalizing it —<br>we're making it better.</span>
+            </h1>
+
+            <!-- Sub -->
+            <p class="splash-sub">
+                LiLi turns <strong>45,000 orders/month</strong> in untapped demand
+                into software-driven infrastructure for LATAM home services.
+            </p>
+
+            <!-- CTA -->
+            <button class="splash-cta" id="splash-enter-btn" onclick="dismissSplash()" autofocus>
+                Explore the Data Room
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <p class="splash-footer">Press <kbd>Enter</kbd> or <kbd>Space</kbd> to continue</p>
+        </div>
+    </div>
+    <!-- end splash -->
+
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- ================= SIDEBAR ================= -->
+    <nav class="sidebar">
+        <div class="brand">
+            <img src="assets/logo.svg" alt="LiLi App Logo" onerror="this.style.display='none';">
+            <p class="brand-subtitle"><i class="fa-solid fa-lock-open" style="font-size: 9px;"></i> Data Room · Pre-Seed 2026</p>
+        </div>
+        <div class="nav-menu">
+            <div class="nav-group">Overview</div>
+            <a class="nav-item active" onclick="switchTab('dashboard', event)"><i class="fa-solid fa-gauge-high"></i> Executive Dashboard</a>
+            <a class="nav-item" onclick="switchTab('thesis', event)"><i class="fa-solid fa-lightbulb"></i> Investment Thesis</a>
+
+            <div class="nav-group">Business &amp; Market</div>
+            <a class="nav-item" onclick="switchTab('market', event)"><i class="fa-solid fa-earth-americas"></i> Market &amp; TAM</a>
+            <a class="nav-item" onclick="switchTab('business', event)"><i class="fa-solid fa-handshake"></i> Business Model</a>
+            <a class="nav-item" onclick="switchTab('moat', event)"><i class="fa-solid fa-shield-halved"></i> Product &amp; Tech Moat</a>
+
+            <div class="nav-group">Performance</div>
+            <a class="nav-item" onclick="switchTab('metrics', event)"><i class="fa-solid fa-chart-column"></i> Metrics &amp; Unit Econ (B2B2C)</a>
+            <a class="nav-item" onclick="switchTab('financials', event)"><i class="fa-solid fa-vault"></i> Financials </a>
+
+            <div class="nav-group">Corporate</div>
+            <a class="nav-item" onclick="switchTab('captable', event)"><i class="fa-solid fa-chart-pie"></i> Cap Table &amp; Equity</a>
+            <a class="nav-item" onclick="switchTab('team', event)"><i class="fa-solid fa-users"></i> Team &amp; Growth</a>
+            <a class="nav-item" onclick="switchTab('legal', event)"><i class="fa-solid fa-scale-balanced"></i> Legal &amp; Compliance</a>
+
+            <div class="nav-group">Documents</div>
+            <a class="nav-item" onclick="switchTab('files', event)"><i class="fa-solid fa-folder-open"></i> Document Index</a>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-wrapper">
+
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <h2 id="current-section-title"><i class="fa-solid fa-gauge-high" style="color: var(--primary);"></i> Executive Dashboard</h2>
+            <div class="top-actions">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search the Data Room…" onkeyup="handleSearch()">
+                </div>
+
+                <button onclick="window.print()" class="btn btn-outline">
+                    <i class="fa-solid fa-file-pdf" style="color: var(--accent-red);"></i> Export PDF
+                </button>
+
+                <div class="contact-dropdown" style="position: relative;">
+                    <button class="btn btn-primary" onclick="toggleContactDropdown()">
+                        <i class="fa-solid fa-calendar-check"></i> Contact / Meet
+                    </button>
+                    <div id="contactMenu" style="display: none; position: absolute; right: 0; top: 115%; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); width: 240px; z-index: 100; overflow: hidden;">
+                        <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); font-size: 10px; font-weight: 700; color: var(--text-muted); background: var(--bg-body); text-transform: uppercase; letter-spacing: 1px;">Schedule a call</div>
+                        <a href="https://calendar.app.google/fWphgcvkRGqQdoUR6" target="_blank" class="dropdown-item" style="display: flex; align-items: center; gap: 10px; padding: 13px 16px; color: var(--dark); text-decoration: none; font-size: 13px; font-weight: 500; transition: background 0.2s;"><i class="fa-brands fa-google" style="color: var(--primary);"></i> Book a Google Meet</a>
+
+                        <div style="padding: 10px 16px; border-bottom: 1px solid var(--border-light); border-top: 1px solid var(--border-light); font-size: 10px; font-weight: 700; color: var(--text-muted); background: var(--bg-body); text-transform: uppercase; letter-spacing: 1px;">Copy Email</div>
+                        <a href="javascript:void(0)" onclick="copyToClipboard('bastian@liliapp.cl', event)" class="dropdown-item" style="display: flex; align-items: center; gap: 10px; padding: 13px 16px; color: var(--dark); text-decoration: none; font-size: 13px; font-weight: 500; transition: background 0.2s; border-bottom: 1px solid var(--border-light);"><i class="fa-regular fa-copy" style="color: var(--text-muted);"></i> bastian@liliapp.cl</a>
+                        <a href="javascript:void(0)" onclick="copyToClipboard('sebastian@liliapp.cl', event)" class="dropdown-item" style="display: flex; align-items: center; gap: 10px; padding: 13px 16px; color: var(--dark); text-decoration: none; font-size: 13px; font-weight: 500; transition: background 0.2s;"><i class="fa-regular fa-copy" style="color: var(--text-muted);"></i> sebastian@liliapp.cl</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- 1. DASHBOARD -->
+            <section id="dashboard" class="section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <span class="hero-eyebrow"><i class="fa-solid fa-bolt"></i> Pre-Seed · 2026</span>
+                        <h1><span class="accent">Field Service</span> Management Platform.</h1>
+                        <p>LiLi operates services for retail and insurance with an active professional network, real-time monitoring, and measurable quality standards for end customers.</p>
+                        <div class="hero-meta">
+                            <div class="hero-meta-item"><i class="fa-solid fa-map-marker-alt"></i> HQ: Santiago, Chile</div>
+                            <div class="hero-meta-item"><i class="fa-solid fa-flag"></i> Market: CL</div>
+                            <div class="hero-meta-item"><i class="fa-solid fa-rocket"></i> Stage: Pre-Seed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>Traction &amp; Key Metrics (Q2 2026)</h3></div>
+                <div class="grid-4">
+                    <div class="kpi-card">
+                        <div class="kpi-title">LiLi Active Pros</div>
+                        <div class="kpi-value">+570</div>
+                        <div class="kpi-trend"><i class="fa-solid fa-arrow-trend-up"></i> Professionals currently active in operations</div>
+                    </div>
+                    <div class="kpi-card accent-blue">
+                        <div class="kpi-title">B2B2C Partners</div>
+                        <div class="kpi-value">2 + 10</div>
+                        <div class="kpi-trend" style="color: var(--accent-blue);"><i class="fa-solid fa-building"></i> 2 Tier-1 signed (BCI / Sodimac) · 10+ in pipeline</div>
+                    </div>
+                    <div class="kpi-card accent-green">
+                        <div class="kpi-title">Capital Raised (Grants)</div>
+                        <div class="kpi-value">~$54.8K</div>
+                        <div class="kpi-trend"><i class="fa-solid fa-check-circle"></i> 100% Equity-Free (USD)</div>
+                    </div>
+                    <div class="kpi-card accent-soft">
+                        <div class="kpi-title">Target Round</div>
+                        <div class="kpi-value">$750k</div>
+                        <div class="kpi-trend" style="color: var(--primary-light);"><i class="fa-solid fa-file-signature"></i> SAFE (Pre-Seed)</div>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>Service Excellence · The B2B2C Trust Layer</h3></div>
+                <div class="grid-4">
+                    <div class="kpi-card accent-green">
+                        <div class="kpi-title">Fulfillment Rate</div>
+                        <div class="kpi-value">98%</div>
+                        <div class="kpi-trend"><i class="fa-solid fa-circle-check"></i> Completed services on first attempt</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-title">Customer NPS</div>
+                        <div class="kpi-value">4.6/5</div>
+                        <div class="kpi-trend"><i class="fa-solid fa-star"></i> End-customer satisfaction</div>
+                    </div>
+                    <div class="kpi-card accent-blue">
+                        <div class="kpi-title">Complaint Rate</div>
+                        <div class="kpi-value">&lt;2%</div>
+                        <div class="kpi-trend" style="color: var(--accent-blue);"><i class="fa-solid fa-shield"></i> Across completed services</div>
+                    </div>
+                    <div class="kpi-card accent-soft">
+                        <div class="kpi-title">Monitoring Coverage</div>
+                        <div class="kpi-value">100%</div>
+                        <div class="kpi-trend" style="color: var(--primary-light);"><i class="fa-solid fa-eye"></i> Real-time orchestration</div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-circle-exclamation text-danger"></i> The Problem</h4>
+                        <p>Large retailers invest millions in attracting customers and selling home products, but <strong>the customer experience doesn't end with the sale.<strong> When installation or other field services are required, retailers rely on fragmented provider networks, leading to <strong>limited visibility, poor traceability, SLA breaches, and inconsistent customer experiences.<strong></p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h4><i class="fa-solid fa-lightbulb text-primary"></i> The LiLi Solution</h4>
+                        <p>LiLi enables retailers to <strong> orchestrate and scale their field services<strong> through a technology platform connected to a qualified network of professionals. We manage the entire service journey from <strong>assignment and scheduling to execution, evidence and real-time traceability<strong> helping retailers deliver consistent customer experiences at scale. Our B2B2C model combines <strong>enterprise platform fees with a commission on executed services.<strong></p>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>B2B2C Pipeline &amp; Integrations</h3></div>
+                <div class="grid-3">
+                    <div class="info-card" style="border-top: 4px solid var(--secondary);">
+                        <h4><i class="fa-solid fa-circle-check text-success"></i> Tier-1 Anchors · Live & Pilots</h4>
+                        <ul class="custom-list">
+                            <li><strong>Sodimac / Falabella: </strong> LiLi currently captures 10–15% of Sodimac’s total field service volume, demonstrating our ability to operate at scale with a leading retailer</li>
+                            <li><strong>Walmart: </strong> Pilot defined to launch a new field services business line, with plans to replicate the model across additional cities.</li>
+                            <li><strong>Rheem / Splendid: </strong> Strategic partnership to provide installation services through their e-commerce channels, opening a new B2B2C vertical.</li>
+                        </ul>
+                        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-light); font-size: 13px; color: var(--text-muted);"><strong>Combined available demand:</strong> 45,000 orders/month.</div>
+                    </div>
+                    <div class="info-card" style="border-top: 4px solid var(--primary-light);">
+                        <h4><i class="fa-solid fa-circle-check text-success"></i> Other Integrations Live</h4>
+                        <ul class="custom-list">
+                            <li><strong>Todoproductos (BeDesign, Kidscool)</strong></li>
+                            <li><strong>Homerdesign</strong></li>
+                            <li><strong>Onnesta</strong></li>
+                            <li><strong>Rödler</strong></li>
+                            <li><strong>LagoMuebles</strong></li>
+                            <li><strong>Moos Deco</strong></li>
+                        </ul>
+                    </div>
+                    <div class="info-card" style="border-top: 4px solid var(--accent-blue);">
+                        <h4><i class="fa-solid fa-handshake text-info"></i> In active conversation</h4>
+                        <ul class="custom-list info">
+                            <li><strong>IKEA</strong></li>
+                            <li><strong>Cencosud</strong></li>
+                            <li><strong>ABC (La Polar + abcdin)</strong></li>
+                            <li><strong>Ripley</strong></li>
+                            <li><strong>Hites</strong></li>
+                            <li><strong>Electrolux (Mademsa, Fensa)</strong></li>
+                            <li><strong>CIC</strong></li>
+                            <li><strong>Albin Trotter</strong></li>
+                            <li><strong>DKo Home</strong></li>
+                            <li><strong>Ashley Furniture</strong></li>
+                            <li><strong>Klik Muebles</strong></li>
+                            <li><strong>Mercado Libre</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background: var(--gradient-brand-dark); color: #fff; border: none; box-shadow: var(--shadow-lg);">
+                    <h4 style="color: #fff;"><i class="fa-solid fa-bolt"></i> Operational Capacity Gap — The Real Bottleneck</h4>
+                    <p style="color: rgba(255,255,255,0.92); font-size: 14px;">LiLi has validated demand with leading retailers and is now focused on expanding its operational capacity to serve a larger share of that demand.</p>
+                    <div class="grid-4" style="margin-top: 16px;">
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">Last 3 months</div>
+                            <div style="font-size: 30px; font-weight: 800; color: #fff; margin-top: 6px;">+890</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">Sodimac services completed)</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">Average services month</div>
+                            <div style="font-size: 30px; font-weight: 800; color: #fff; margin-top: 6px;">~297</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">Current Sodimac run-rate</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">Upside at 100% capacity</div>
+                            <div style="font-size: 30px; font-weight: 800; color: #fff; margin-top: 6px;">10–15%</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">Of Sodimac's total field service volume currently captured by LiLi</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">GMV potential</div>
+                            <div style="font-size: 30px; font-weight: 800; color: #fff; margin-top: 6px;">~US$4.1M</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">USD / month at full fulfillment across 3 Tier-1 retailers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);">
+                    <h4><i class="fa-solid fa-medal text-primary"></i> Capital Traction (Equity-Free Grants)</h4>
+                    <p>LiLi has been funded and validated exclusively by top-tier government and academic institutions, keeping the cap table fully clean:</p>
+                    <div class="badge-container">
+                        <span class="badge primary"><i class="fa-solid fa-award"></i> Start-Up Chile Ignite (~$31.5K USD)</span>
+                        <span class="badge primary"><i class="fa-solid fa-award"></i> Start-Up Chile Build (~$15.8K USD)</span>
+                        <span class="badge primary"><i class="fa-solid fa-award"></i> Start Fellowship (~$6.8K USD)</span>
+                        <span class="badge primary"><i class="fa-solid fa-award"></i> Acelera / Incuba UDD (~$0.75K USD)</span>
+                        <span class="badge" style="background: var(--primary-fade); color: var(--primary); font-weight: 700; border: 1px solid var(--primary-soft);"><i class="fa-solid fa-sigma"></i> Total: ~$54.85K USD</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. INVESTMENT THESIS -->
+            <section id="thesis" class="section">
+                <h1 class="page-title">Investment Thesis</h1>
+                <p class="lead">The infrastructure layer enabling retailers and insurers to scale field services across Latin America.</p>
+
+                <div class="quote-box">
+                    What started with Liliana’s leaking roof became a mission to make every service at home more trusted, transparent, and effortless.
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4>1. A structural problem in a proven market</h4>
+                        <p>Global players such as IKEA and Taskrabbit have validated the opportunity to orchestrate independent professionals at scale. Latin America adds a larger opportunity due to its highly fragmented and informal field service market.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h4>2. Formalization as a competitive advantage</h4>
+                        <p>LiLi gives professionals free digital tools, faster payments, insurance, and administrative support, creating a more reliable and traceable professional network. More services → more data → better operations.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>3. B2B2C led regional expansion</h4>
+                        <p>nstead of spending heavily on B2C acquisition, LiLi enters new markets through enterprise customers that already generate service demand. Enterprise demand → LiLi infrastructure → local professional network.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>4. Aligned incentives, scalable economics</h4>
+                        <ul class="custom-list purple">
+                            <li><strong>LiLi Pros:</strong> get more work and tools.</li>
+                            <li><strong>Enterprises:</strong> get coverage, control, and traceability.</li>
+                            <li><strong>Customers:</strong> get greater certainty and trust.</li>
+                        </ul>
+                        <p><em>LiLi captures value through service volume and recurring enterprise platform revenue.</em></p>
+                    </div>
+                </div>
+            </section>
+
+                        <!-- 3. MARKET -->
+            <section id="market" class="section">
+                <h1 class="page-title">Market &amp; TAM</h1>
+                <p class="lead">A massive, fragmented market — and proof that LiLi already captures a share of it inside a live enterprise account.</p>
+
+                <div class="section-header"><h3>Market Opportunity</h3></div>
+                <div class="grid-2">
+                    <div class="kpi-card accent-blue">
+                        <div class="kpi-title">TAM — Latin America</div>
+                        <div class="kpi-value">~$25B+</div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">Estimated annual market for home and field services across Latin America. <em>Sources: INE, Edifito.cl.</em></p>
+                    </div>
+                    <div class="kpi-card accent-soft">
+                        <div class="kpi-title">SAM — Chile</div>
+                        <div class="kpi-value">~$1.5B</div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 10px;">Estimated annual market for residential and home services in Chile. <em>Source: Cámara de Comercio Electrónico.</em></p>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>Proven Demand &amp; Room to Scale</h3></div>
+                <div class="info-card" style="background: var(--gradient-brand-dark); color: #fff; border: none; box-shadow: var(--shadow-lg);">
+                    <h4 style="color: #fff;"><i class="fa-solid fa-bolt"></i> LiLi already moves inside Sodimac's demand</h4>
+                    <div class="grid-2" style="margin-top: 16px; margin-bottom: 0;">
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">Services managed</div>
+                            <div style="font-size: 34px; font-weight: 800; color: #fff; margin-top: 6px;">892</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">in the last 3 months, inside Sodimac</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);">
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.6px;">Current capture</div>
+                            <div style="font-size: 34px; font-weight: 800; color: #fff; margin-top: 6px;">10–15%</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.78);">of Sodimac's relevant service volume</div>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.92); font-size: 14px; margin-top: 16px; margin-bottom: 0;">LiLi does not need to create consumer demand from scratch. We scale by capturing a larger share of the service volume enterprises already generate.</p>
+                </div>
+
+                <div class="info-card" style="margin-top: 22px;">
+                    <h4><i class="fa-solid fa-arrow-trend-up text-primary"></i> Growth Path</h4>
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                        <div style="flex: 1; min-width: 150px; background: var(--primary-fade); border: 1px solid var(--primary-soft); border-radius: var(--radius-sm); padding: 14px; text-align: center; font-size: 13px; font-weight: 700; color: var(--primary);">Sodimac existing volume</div>
+                        <i class="fa-solid fa-arrow-right" style="color: var(--primary-soft);"></i>
+                        <div style="flex: 1; min-width: 150px; background: var(--primary-fade); border: 1px solid var(--primary-soft); border-radius: var(--radius-sm); padding: 14px; text-align: center; font-size: 13px; font-weight: 700; color: var(--primary);">Greater share of wallet</div>
+                        <i class="fa-solid fa-arrow-right" style="color: var(--primary-soft);"></i>
+                        <div style="flex: 1; min-width: 150px; background: var(--primary-fade); border: 1px solid var(--primary-soft); border-radius: var(--radius-sm); padding: 14px; text-align: center; font-size: 13px; font-weight: 700; color: var(--primary);">Additional retailers</div>
+                        <i class="fa-solid fa-arrow-right" style="color: var(--primary-soft);"></i>
+                        <div style="flex: 1; min-width: 150px; background: var(--primary-fade); border: 1px solid var(--primary-soft); border-radius: var(--radius-sm); padding: 14px; text-align: center; font-size: 13px; font-weight: 700; color: var(--primary);">Regional expansion</div>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>TAM / SAM / SOM</h3></div>
+                <div class="grid-3">
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-globe text-primary"></i> TAM</h4>
+                        <p style="font-size: 14px; margin: 0;">Total market opportunity — the full home and field-services market across Latin America.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-crosshairs text-primary"></i> SAM</h4>
+                        <p style="font-size: 14px; margin: 0;">Initial addressable market — the near-term segment LiLi can realistically reach today, starting in Chile.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h4><i class="fa-solid fa-bullseye text-danger"></i> SOM</h4>
+                        <p style="font-size: 14px; margin: 0;">Realistically capturable opportunity. We're not publishing a projected figure here — the strongest evidence today is the <strong>892 services already executed inside Sodimac</strong> above.</p>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>Competitive Landscape</h3></div>
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-chess-knight text-primary"></i> Where LiLi Sits</h4>
+                        <ul class="custom-list purple">
+                            <li><strong>Global platforms:</strong> TaskRabbit, Angi, Thumbtack</li>
+                            <li><strong>Enterprise field-service platforms:</strong> Soodtrack, Wiptool, Auvo, Aora Servicios.</li>
+                            <li><strong>Marketplaces:</strong> Portal de Especialistas, Kalabaza, Jobbing.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card highlight">
+                        <h4><i class="fa-solid fa-layer-group text-primary"></i> LiLi's Advantage</h4>
+                        <p style="font-size: 14px;"><strong>The infrastructure layer enabling enterprises to orchestrate field services through a managed professional network.</strong></p>
+                        <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-light); font-size: 14px;">
+                            LiLi combines <strong>enterprise demand + LiLi orchestration + professional network + service execution</strong>, and monetizes through transaction revenue / commission on services executed.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                       <!-- 4. BUSINESS & GTM -->
+            <section id="business" class="section">
+                <h1 class="page-title">Business Model &amp; B2B2C Strategy</h1>
+                <p class="lead">One revenue model: a 25–28% commission on every service executed. Channel growth strategy with higher volume &amp; lower CAC.</p>
+
+                <div class="section-header"><h3>Revenue Model</h3></div>
+                <div class="info-card highlight">
+                    <h4><i class="fa-solid fa-building text-primary"></i> B2B2C Enterprise Channel <span class="badge primary" style="margin-left:8px;">Primary Growth Engine</span></h4>
+                    <p>Retailers, insurers and assistance companies channel the service demand they already generate installations, maintenance, home services — through LiLi's managed professional network. LiLi executes the service and earns a share of it.</p>
+                    <ul class="custom-list purple">
+                        <li><strong>Revenue model:</strong> 25–28% + VAT commission on every service completed. No subscriptions or licensing fees (for now): this is currently the only source of revenue.</li>
+                        <li><strong>Average Ticket:</strong> ~$47,78 USD per service.</li>
+                        <li><strong>LiLi Pro Network:</strong> 580+ verified professionals connected nationwide.</li>
+                        <li><strong>Value Proposition to Partners:</strong> Hire nobody. No payroll. LiLi absorbs the operational execution.</li>
+                        <li><strong>Enterprise Integrations:</strong> API, webhooks, ERP and CRM integrations (SAP, Oracle, Salesforce roadmap).</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge">Falabella</span>
+                        <span class="badge">Sodimac</span>
+                        <span class="badge">Walmart (pilot)</span>
+                        <span class="badge">Rheem / Splendid</span>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 22px;">
+                    <div class="info-card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/lili-pro-service.jpg" alt="LiLi Pro completing an installation at a customer's home" style="width: 100%; height: 230px; object-fit: cover; display: block;">
+                        <div style="padding: 22px 30px 28px;">
+                            <h4><i class="fa-solid fa-mobile-screen text-success"></i> On-Demand Service Layer</h4>
+                            <p style="font-size: 14px;">Customers can also request services through LiLi’s app, web or WhatsApp AI. This on-demand channel keeps the professional network active between enterprise jobs and provides additional demand, while LiLi’s primary growth strategy remains enterprise partnerships.</p>
+                            <div class="badge-container">
+                             <span class="badge">iOS / Android App</span> <span class="badge">WhatsApp AI</span> <span class="badge">liliapp.cl</span>
+                   </div>
+                </div>
+          </div>
+          <div class="info-card">
+        
+                        <h4><i class="fa-solid fa-gauge-high text-primary"></i> Why Channel &gt; Direct</h4>
+                        <ul class="custom-list">
+                            <li>Enterprise partners already own the customer relationship and the demand — LiLi doesn't have to buy it.</li>
+                            <li>One signed retailer unlocks hundreds of jobs/month, vs. acquiring consumers one at a time.</li>
+                            <li>Same 25–28% take rate on every job regardless of channel — volume through partners is what moves CAC down and margin up.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background: var(--gradient-brand-dark); color: #fff; border: none; margin-top: 22px;">
+                    <h4 style="color: #fff;"><i class="fa-solid fa-rocket"></i> The Scalability Math (Per Enterprise Partner)</h4>
+                    <p style="color: rgba(255,255,255,0.92); font-size: 14px;">A single Tier-1 retailer with ~700 services/month, a ~US$48 average ticket, and a 25–28% take rate can generate approximately US$403K in annual GMV and US$101K–113K in annual transaction revenue for LiLi, excluding platform fees and value-added services.</p>
+                </div>
+
+                <div class="section-header"><h3>Go-To-Market 2026-2029</h3></div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-badge">Today</div>
+                        <div class="timeline-content">
+                            <h4>Retail Partnerships &amp; Pilots</h4>
+                            <p>Sodimac and Falabella — <strong>892 services managed in the last 3 months</strong> inside Sodimac alone, proving the commission model works at enterprise volume.</p>
+                            <p><strong>Pilots &amp; active pipeline:</strong> Walmart, Cencosud, Rheem, ABC, Hites, Ripley and Electrolux — commercial conversations at different stages, all evaluating the same 25–28% commission structure.</p>
+                            <p><strong>Objective:</strong> Turn every pilot into a signed, recurring enterprise channel before scaling geography.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">2027</div>
+                        <div class="timeline-content">
+                            <h4>Chile Scale &amp; LatAm Expansion</h4>
+                            <p>Convert the pilot pipeline into signed enterprise contracts and push for <strong>nationwide coverage in Chile</strong>, backed by deeper technical integrations (API, webhooks, SAP/Oracle/Salesforce roadmap) that make onboarding new retailers and insurers faster to repeat.</p>
+                            <p>In parallel, begin structuring the first LatAm expansion moves — market discovery and early distribution conversations outside Chile — while Chile remains the primary growth engine.</p>
+                            <p><strong>Objective:</strong> Prove the B2B2C commission model is repeatable across enterprise verticals (retail, insurance, home improvement) before replicating it abroad.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">2028</div>
+                        <div class="timeline-content">
+                            <h4>Regional Field Services Infrastructure</h4>
+                            <p>Extend live operations into <strong>Mexico and Colombia</strong>, reusing the same enterprise-channel playbook validated in Chile: an anchor retailer or insurer brings the demand, LiLi brings the managed professional network and execution layer.</p>
+                            <p>Standardize the onboarding, compliance and quality-control playbook for the professional network so it can be deployed market-by-market without rebuilding operations from scratch each time.</p>
+                            <p><strong>Objective:</strong> Stand up the operational backbone for a multi-country field-services infrastructure, not just multi-country sales.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">2029</div>
+                        <div class="timeline-content">
+                            <h4>LatAm Platform</h4>
+                            <p>Operate as a single <strong>regional network across Chile, Mexico and Colombia</strong>, with a unified data layer connecting enterprise partners, professionals and service execution across markets.</p>
+                            <p>Deepen the enterprise ecosystem across verticals — retail, home improvement and insurance — with LiLi positioned as the shared infrastructure layer each of them plugs into, rather than a point solution for any single one.</p>
+                            <p><strong>Objective:</strong> Establish LiLi as the default execution layer for field services across the region.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. PRODUCT MOAT -->
+            <section id="moat" class="section">
+                <h1 class="page-title">Product &amp; Technical Moat</h1>
+                <p class="lead">Omnichannel architecture, service orchestration, and an automated, ironclad QA process.</p>
+
+                <div class="section-header"><h3>Live Ecosystem &amp; Apps</h3></div>
+                <div class="grid-3" style="margin-bottom: 48px;">
+                    <!-- B2C -->
+                    <div class="info-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 0;">
+                        <div style="background: var(--primary-fade); width: 76px; height: 76px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: inset 0 0 0 1px rgba(91,42,134,0.08);">
+                            <svg viewBox="0 0 260.09 286.46" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path fill="#5B2A86" d="M-1162.5,221.77l-130,75.75V508.23h260.09V297.52Zm86,182.73-86-49.68-86,49.68v-50l86-49.68,86,49.68Z" transform="translate(1292.5 -221.77)"/>
+                            </svg>
+                        </div>
+                        <h4 style="margin-bottom: 8px; font-size: 18px;">LiLi App <span class="badge primary" style="margin-left: 6px;">B2C</span></h4>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px; flex: 1;">End-customer platform for service requests — zero-friction experience.</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                            <a href="https://liliapp.cl" target="_blank" class="btn btn-outline" style="width: 100%; padding: 11px;"><i class="fa-solid fa-globe"></i> liliapp.cl</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.narustudio.liliapp" target="_blank" class="btn" style="width: 100%; background: #000; color: #fff; padding: 11px;"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                            <span style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500;"><i class="fa-brands fa-apple"></i> iOS coming soon</span>
+                        </div>
+                    </div>
+                    <!-- Pro -->
+                    <div class="info-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 0;">
+                        <div style="background: #F3F4F6; width: 76px; height: 76px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: inset 0 0 0 1px rgba(15,8,23,0.08);">
+                            <svg viewBox="0 0 260.09 286.46" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path fill="#0F0817" d="M-1162.5,221.77l-130,75.75V508.23h260.09V297.52Zm86,182.73-86-49.68-86,49.68v-50l86-49.68,86,49.68Z" transform="translate(1292.5 -221.77)"/>
+                            </svg>
+                        </div>
+                        <h4 style="margin-bottom: 8px; font-size: 18px;">LiLi Pro <span class="badge success" style="margin-left: 6px;">App</span></h4>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px; flex: 1;">Free, end-to-end management, routing and billing tool for our professional network.</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                            <a href="https://profesional.liliapp.cl" target="_blank" class="btn btn-outline" style="width: 100%; padding: 11px;"><i class="fa-solid fa-globe"></i> profesional.liliapp.cl</a>
+                            <a href="https://play.google.com/store/apps/details?id=cl.liliapp.profesional.twa" target="_blank" class="btn" style="width: 100%; background: #000; color: #fff; padding: 11px;"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                            <a href="https://apps.apple.com/us/app/lili-profesionales-servicios/id6772294747" target="_blank" class="btn" style="width: 100%; background: #111827; color: #fff; padding: 11px;"><i class="fa-brands fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                    <!-- Enterprise -->
+                    <div class="info-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 0;">
+                        <div style="background: var(--primary-fade); padding: 14px 22px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: inset 0 0 0 1px rgba(91,42,134,0.08); min-height: 76px;">
+                            <svg viewBox="0 0 936.5 286.46" width="150" height="46" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <g fill="#5B2A86">
+                                    <path d="M-1162.5,221.77l-130,75.75V508.23h260.09V297.52Zm86,182.73-86-49.68-86,49.68v-50l86-49.68,86,49.68Z" transform="translate(1292.5 -221.77)"/>
+                                    <polygon points="322.5 4.23 388.5 4.23 388.5 233.23 529.85 233.23 529.85 286.46 322.77 286.46 322.5 4.23"/>
+                                    <rect x="552.5" y="59.23" width="65" height="43"/>
+                                    <rect x="552.5" y="124.23" width="65" height="162"/>
+                                    <polygon points="641.5 4.23 707.5 4.23 707.5 233.23 848.85 233.23 848.85 286.46 641.77 286.46 641.5 4.23"/>
+                                    <rect x="871.5" y="59.23" width="65" height="43"/>
+                                    <rect x="871.5" y="124.23" width="65" height="162"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <h4 style="margin-bottom: 8px; font-size: 18px;">LiLi Enterprise <span class="badge warning" style="margin-left: 6px;">SaaS</span></h4>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px; flex: 1;">Retailer dashboard. Real-time fulfillment monitoring and API integrations (Shopify / Jumpseller).</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                            <a href="https://empresas.liliapp.cl" target="_blank" class="btn btn-outline" style="width: 100%; padding: 11px;"><i class="fa-solid fa-globe"></i> empresas.liliapp.cl</a>
+                            <div class="btn btn-outline" style="width: 100%; opacity: 0.5; cursor: not-allowed; padding: 11px;"><i class="fa-solid fa-code"></i> API Docs (Soon)</div>
+                            <span style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500; visibility: hidden;">.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card highlight">
+                        <h4><i class="fa-solid fa-layer-group text-primary"></i> 1. Convergent Omnichannel</h4>
+                        <p>The real technical magic is convergence. Regardless of the entry channel, everything funnels into a single platform (LiLi Pro):</p>
+                        <ul class="custom-list purple">
+                            <li><strong>B2B2C Enterprise API:</strong> transparent "Plug &amp; Play" e-commerce integration.</li>
+                            <li><strong>AI WhatsApp Channel:</strong> customers request services 100% through natural-language conversation with our AI.</li>
+                            <li><strong>Unified Funnel:</strong> every source lands as a structured order in the pro's app.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-calculator text-primary"></i> 2. The Math Engine (B2B2C "Uber")</h4>
+                        <p>We don't rely on black-box AI to assign work — we run a robust predictive model:</p>
+                        <ul class="custom-list purple">
+                            <li><strong>Priority Algorithm:</strong> tiers based on NPS, experience and verification risk.</li>
+                            <li><strong>Game Theory &amp; Rejections:</strong> repeatedly declining jobs instantly lowers a pro's priority.</li>
+                            <li><strong>Risk-Free Testing:</strong> 14-day payment escrow lets retailers trial technicians with zero financial risk.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-header"><h3>Security Moat: "You don't sign up — you apply"</h3></div>
+                <div class="grid-4" style="gap: 16px;">
+                    <div class="kpi-card" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-fingerprint" style="font-size: 26px; color: var(--primary); margin-bottom: 14px;"></i>
+                        <h4 style="font-size: 14px; margin-bottom: 8px;">Hoktus API</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Automated criminal &amp; financial background checks.</p>
+                    </div>
+                    <div class="kpi-card accent-green" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-file-invoice-dollar" style="font-size: 26px; color: var(--secondary); margin-bottom: 14px;"></i>
+                        <h4 style="font-size: 14px; margin-bottom: 8px;">Redcumbre API</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Tax validation &amp; SII activity start-up.</p>
+                    </div>
+                    <div class="kpi-card accent-orange" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-certificate" style="font-size: 26px; color: var(--accent-orange); margin-bottom: 14px;"></i>
+                        <h4 style="font-size: 14px; margin-bottom: 8px;">SEC Certifications</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Active technical credentials for gas &amp; electrical work.</p>
+                    </div>
+                    <div class="kpi-card accent-blue" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-user-shield" style="font-size: 26px; color: var(--accent-blue); margin-bottom: 14px;"></i>
+                        <h4 style="font-size: 14px; margin-bottom: 8px;">Human-in-the-Loop</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Final QA verdict by an expert human team.</p>
+                    </div>
+                </div>
+
+                                <div class="section-header"><h3>Productized Services · Fixed-Price Catalog</h3></div>
+                <div class="grid-3">
+                    <div class="kpi-card" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-couch" style="font-size: 24px; color: var(--primary); margin-bottom: 12px;"></i>
+                        <div class="kpi-title">Armado de Cómoda</div>
+                        <div class="kpi-value" style="font-size: 28px;">$29.990</div>
+                        <div class="kpi-trend" style="color: var(--text-muted); font-weight: 500;">CLP · precio fijo</div>
+                    </div>
+                    <div class="kpi-card accent-orange" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-fire" style="font-size: 24px; color: var(--accent-orange); margin-bottom: 12px;"></i>
+                        <div class="kpi-title">Instalación de Calefont</div>
+                        <div class="kpi-value" style="font-size: 28px;">$89.990</div>
+                        <div class="kpi-trend" style="color: var(--text-muted); font-weight: 500;">CLP · precio fijo</div>
+                    </div>
+                    <div class="kpi-card accent-blue" style="padding: 22px 18px;">
+                        <i class="fa-solid fa-snowflake" style="font-size: 24px; color: var(--accent-blue); margin-bottom: 12px;"></i>
+                        <div class="kpi-title">Instalación Aire Acondicionado</div>
+                        <div class="kpi-value" style="font-size: 28px;">$119.990</div>
+                        <div class="kpi-trend" style="color: var(--text-muted); font-weight: 500;">CLP · precio fijo</div>
+                    </div>
+                </div>
+                <div class="info-card" style="background: var(--primary-fade); border-color: var(--primary-soft); margin-top: 8px;">
+                    <p style="font-size: 14px; margin: 0;"><i class="fa-solid fa-tags text-primary"></i> <strong>Why this matters:</strong> LiLi productizes services the way a retailer productizes SKUs — every job has a fixed, pre-quoted price instead of an open-ended negotiation. That kills the informal market's biggest point of friction (an unpredictable quote), makes services searchable and comparable like a product catalog, and gives LiLi a standardized margin per service instead of a case-by-case one.</p>
+                </div>
+
+            
+
+                       
+            <!-- 6. METRICS -->
+            <section id="metrics" class="section">
+                <h1 class="page-title">Metrics &amp; Unit Economics (B2B2C)</h1>
+                <p class="lead">Unit economics across our B2B2C model: validated in B2C execution and scaled through enterprise B2B2C channels.</p>
+
+                <div class="grid-4">
+                    <div class="kpi-card">
+                        <div class="kpi-title">B2C Avg Ticket</div>
+                        <div class="kpi-value">$50</div>
+                        <div class="kpi-trend">USD · 28% commission · 19.2% returning</div>
+                    </div>
+                    <div class="kpi-card accent-green">
+                        <div class="kpi-title">B2B Avg Ticket</div>
+                        <div class="kpi-value">$114</div>
+                        <div class="kpi-trend">USD · Take rate <strong>28%</strong> + VAT</div>
+                    </div>
+                    <div class="kpi-card accent-blue">
+                        <div class="kpi-title">Jobs Completed</div>
+                        <div class="kpi-value">+720</div>
+                        <div class="kpi-trend" style="color: var(--accent-blue);">Across B2C + B2B · +500 households in Santiago</div>
+                    </div>
+                    <div class="kpi-card accent-soft">
+                        <div class="kpi-title">B2C Growth (9 months)</div>
+                        <div class="kpi-value">89x</div>
+                        <div class="kpi-trend" style="color: var(--primary-light);">Validated sandbox · Q3-2025 to Q2-2026</div>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background: var(--primary-fade); border-color: var(--primary-soft); margin-bottom: 24px;">
+                    <h4><i class="fa-solid fa-chart-line text-primary"></i> 9 Months of Historical Order Data</h4>
+                    <p style="font-size: 14px;">Consolidated transactional dataset from <strong>Jul-2025 → Apr-2026</strong> covering every order, professional, customer, ticket, completion rate and reorder cohort. Available on request inside the data room (file <em>pedidos_all_all_2026-04-15.xlsx</em>).</p>
+                </div>
+
+                <div class="info-card" style="background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%); border-color: var(--primary-soft);">
+                    <h4><i class="fa-solid fa-magnifying-glass-chart text-primary"></i> SEO &amp; Zero-Click Traction (Organic Demand Engine)</h4>
+                    <div class="grid-3" style="margin-top: 12px;">
+                        <div><div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px;">Monthly Impressions</div><div style="font-size: 26px; font-weight: 800; color: var(--primary); margin-top: 4px;">+2M</div></div>
+                        <div><div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px;">CTR</div><div style="font-size: 26px; font-weight: 800; color: var(--primary); margin-top: 4px;">2.5%</div></div>
+                        <div><div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px;">Avg Position · Best Sellers</div><div style="font-size: 26px; font-weight: 800; color: var(--primary); margin-top: 4px;">2 – 3</div></div>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 14px; margin-bottom: 0;">Outranking <strong>Chile's largest retail outlet</strong> and <strong>largest hardware store</strong> (now our clients) on the highest-intent service queries — a moat that compounds independently of paid marketing.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card" style="background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); border-color: #FCD34D;">
+                        <h4 style="color: #B45309;"><i class="fa-solid fa-triangle-exclamation"></i> From B2C Sandbox to B2B Scale-Up</h4>
+                        <p style="font-size: 14px;">2025 B2C numbers reflect our <em>orchestration sandbox</em>: intentionally throttled marketing to validate the math engine, QA, and a positive 28% unit economic at retail prices.</p>
+                        <p style="font-size: 14px;">This round unlocks the B2B channel. Each Tier-1 retailer onboarded delivers <strong>700+ orders/month at near-zero CAC</strong>, compounding on the same +45,000 verified pro DB without B2C marketing spend.</p>
+                    </div>
+                    <div class="info-card" style="display: flex; flex-direction: column; padding: 28px;">
+                        <h4 style="margin-bottom: 8px; font-size: 16px;">Cumulative Revenue USD</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Four-month periods (cuatrimestres).  Cumulative revenue in USD since launch. <em>FX rate: CLP/USD 904.54.</em></p>
+                        <canvas id="arrChart" style="max-height: 220px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. FINANCIALS -->
+            <section id="financials" class="section">
+                <h1 class="page-title">Financials &amp; Use of Funds</h1>
+                <p class="lead">Lean cost structure with absolute focus on talent and tech-capital efficiency.</p>
+
+                <div class="section-header"><h3>Burn Rate </h3></div>
+                <div class="grid-3">
+               
+                    <div class="kpi-card accent-red">
+                        <div class="kpi-title">Net Burn Rate</div>
+                        <div class="kpi-value">~$3.5K</div>
+                        <div class="kpi-trend" style="color: var(--accent-red);">USD / month (~3.2M CLP)</div>
+                    </div>
+                
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-magnifying-glass-chart text-primary"></i> FINANCIAL ANALYSIS &amp; CAPITAL EFFICIENCY</h4>
+                    <ul class="custom-list purple">
+                        <li><strong>Cash Position:</strong> LiLi has been built through a capital-efficient approach, prioritizing product development, operational validation and enterprise partnerships while maintaining a lean cost structure.</li>
+                        <li><strong>Net Burn Rate:</strong> ~USD 5.8K/month (~CLP 5.5M/month).</li>
+                        <li><strong>Capital Efficiency:</strong> Lean team structure with founder-led execution.</li>
+                        <li><strong>Capital Efficiency:</strong> Product, marketplace and enterprise platform already developed and operating.</li>
+                        <li><strong>Capital Efficiency:</strong> Google Cloud credits secured through 2027.</li>
+                        <li><strong>Capital Efficiency:</strong> Founder-led sales strategy focused on enterprise partnerships.</li>
+                        <li><strong>Capital Efficiency:</strong> Existing commercial validation through Sodimac and Auxilia (BCI Seguros).</li>
+                        <li><strong>Capital Efficiency:</strong> Nationwide network of 640+ verified professionals connected through the LiLi Pro platform.</li>
+                        <li><strong>Use of Funds - Growth &amp; Enterprise Sales (40%):</strong> Enterprise customer acquisition; retail, insurance and assistance partnerships; expansion of enterprise sales capabilities.</li>
+                        <li><strong>Use of Funds - Product &amp; Integrations (35%):</strong> Enterprise integrations (API, SAP, Oracle, Salesforce roadmap) and workflow automation.</li>
+                    </ul>
+                    <a href="https://docs.google.com/spreadsheets/d/1cW805NFRZusgrn3rmqrwYxwZN_TV288t4CwJLmPon6w/edit?usp=sharing" target="_blank" class="file-card type-xls" style="max-width: 460px; margin-top: 20px;">
+                        <div class="file-icon"><i class="fa-solid fa-file-excel"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Open Cash Flow Model (Google Sheets)</div>
+                            <div class="file-meta"><i class="fa-solid fa-calculator"></i> Line-by-line accounting detail</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header"><h3>Pre-Seed / Bridge Round 2026</h3></div>
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-file-contract text-primary"></i> Investment Terms</h4>
+                        <table class="data-table">
+                            <tr><th>Instrument</th><td>SAFE (Post-Money)</td></tr>
+                            <tr><th>Target Raise</th><td><strong>$250k USD</strong></td></tr>
+                            <tr><th>Valuation Cap</th><td>$3M USD
+                                <div class="tooltip"><i class="fa-solid fa-circle-info"></i>
+                                    <span class="tooltiptext">
+                                        <strong>Valuation rationale:</strong><br>
+                                        Computed on the 2026 ARR target ($500k+) with a 7x–10x forward multiple.<br><br>
+                                        <strong>Formula:</strong> (Projected B2B orders × Net margin × 12) × Industry multiple.<br><br>
+                                        The cap captures the scale value of near-zero CAC via Tier-1 retailer APIs.
+                                    </span>
+                                </div>
+                            </td></tr>
+                            <tr><th>Structure</th><td>Y Combinator Standard</td></tr>
+                        </table>
+                    </div>
+                    <div class="info-card" style="padding: 28px;">
+                        <h4 style="margin-bottom: 20px;">Use of Funds (Projection)</h4>
+                        <canvas id="fundsChart" style="max-height: 200px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. CAP TABLE -->
+            <section id="captable" class="section">
+                <h1 class="page-title">Cap Table &amp; Equity</h1>
+                <p class="lead">Current ownership and future equity vesting.</p>
+
+                <div class="grid-2">
+                    <div class="info-card" style="padding: 28px;">
+                        <h4 style="margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px; font-size: 16px;">Current Ownership</h4>
+                        <p style="margin-bottom: 20px; color: var(--text-muted);">As of today - before any future vesting</p>
+
+                        <div style="display: flex; gap: 26px; align-items: center; flex-wrap: wrap;">
+                            <div style="width: min(290px, 100%); margin: 0 auto;">
+                                <canvas id="capTableChart" style="max-height: 240px; width: 100%;"></canvas>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 18px; flex: 1; min-width: 220px;">
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--dark);">
+                                        <span style="width: 16px; height: 16px; border-radius: 50%; background: #4C1D95; display: inline-block;"></span>
+                                        Bastián Vásquez (CEO)
+                                    </div>
+                                    <div style="margin-left: 26px; font-size: 36px; line-height: 1; color: #4C1D95; font-weight: 800; margin-top: 4px;">55%</div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--dark);">
+                                        <span style="width: 16px; height: 16px; border-radius: 50%; background: #8B5CF6; display: inline-block;"></span>
+                                        Sebastián Aburto (CTO)
+                                    </div>
+                                    <div style="margin-left: 26px; font-size: 36px; line-height: 1; color: #8B5CF6; font-weight: 800; margin-top: 4px;">45%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: #F3EEFA; border: 1px solid #E4D7F4; color: #312E58; font-size: 14px;">
+                            The company is 100% owned by the two founders.<br>
+                            No equity has been issued to Alejandro Gómez yet.
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="padding: 28px; border: 1px dashed #CDBBE8; background: linear-gradient(135deg, #FFFFFF 0%, #FBF9FE 100%);">
+                        <h4 style="margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px; font-size: 16px;">Future Vesting Agreement (Not Yet Issued)</h4>
+                        <p style="margin-bottom: 18px; color: var(--text-muted);">Alejandro Gómez has the right to earn equity in the future subject to vesting and milestones.</p>
+
+                        <div style="display: flex; justify-content: space-between; gap: 12px; align-items: center; background: #F3EEFA; border: 1px solid #E4D7F4; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gradient-brand); color: white; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-user"></i></div>
+                                <div>
+                                    <div style="font-weight: 800; color: var(--dark);">Alejandro Gómez</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Late Co-founder &amp; Tech Lead</div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 38px; font-weight: 800; line-height: 1; color: #5B2A86;">Up to 20%</div>
+                                <div style="font-size: 13px; color: var(--text-muted);">Equity Grant</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 10px; color: #413D61; font-size: 15px; margin-bottom: 16px;">
+                            <div><i class="fa-regular fa-calendar" style="width: 20px; color: #8B5CF6;"></i> Vesting Schedule: 4 years</div>
+                            <div><i class="fa-solid fa-hourglass-start" style="width: 20px; color: #8B5CF6;"></i> Cliff: 12 months</div>
+                            <div><i class="fa-solid fa-bullseye" style="width: 20px; color: #8B5CF6;"></i> Subject to: Milestones &amp; continued contribution</div>
+                            <div><i class="fa-regular fa-circle" style="width: 20px; color: #8B5CF6;"></i> Not yet vested / not yet issued</div>
+                        </div>
+
+                        <div style="padding: 14px 16px; border-radius: 12px; background: #F3EEFA; border: 1px solid #E4D7F4; color: #312E58; font-size: 14px;">
+                            Any future equity issuance to Alejandro will be allocated proportionally from the founders' ownership according to the vesting agreement.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="align-items: start; margin-top: 4px;">
+                    <div class="info-card" style="padding: 24px;">
+                        <h4 style="margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px; font-size: 16px;">Potential Impact (If Alejandro Earns 20%)</h4>
+                        <p style="margin-bottom: 14px; color: var(--text-muted);">Dilution will be shared proportionally between founders.</p>
+
+                        <table class="data-table">
+                            <tr>
+                                <th>Shareholder</th>
+                                <th style="width: 25%;">Current Ownership</th>
+                                <th style="width: 30%;">Potential Ownership (if 20% earned)</th>
+                            </tr>
+                            <tr>
+                                <td><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #4C1D95; margin-right: 8px;"></span>Bastián Vásquez (CEO)</td>
+                                <td>55%</td>
+                                <td><strong style="color: #4C1D95;">44%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #8B5CF6; margin-right: 8px;"></span>Sebastián Aburto (CTO)</td>
+                                <td>45%</td>
+                                <td><strong style="color: #8B5CF6;">36%</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #C4B5FD; margin-right: 8px;"></span>Alejandro Gómez</td>
+                                <td>0%</td>
+                                <td><strong style="color: #6D28D9;">20%</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="info-card" style="padding: 24px; background: #F5F1FB; border-color: #E4D7F4;">
+                        <h4 style="margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.6px; font-size: 16px;"><i class="fa-solid fa-star" style="color: #8B5CF6;"></i> Note</h4>
+                        <p style="margin: 0; color: #413D61;">This scenario is for illustrative purposes only. The actual percentage earned by Alejandro will depend on vesting, milestones and the terms agreed upon by all founders.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-chess-board text-primary"></i> Late Co-Founder Vesting Agreement</h4>
+                    <p>Alejandro Gómez joined LiLi after incorporation and currently leads product and technology execution.</p>
+                    <p>Given his strategic role and long-term commitment to the company, LiLi has granted Alejandro the right to earn up to 20% equity through a four-year vesting schedule.</p>
+                    <ul class="custom-list purple">
+                        <li><strong>Vesting structure:</strong> 5% after a 12-month cliff.</li>
+                        <li><strong>Vesting structure:</strong> Additional 5% after Year 2.</li>
+                        <li><strong>Vesting structure:</strong> Additional 5% after Year 3.</li>
+                        <li><strong>Vesting structure:</strong> Additional 5% after Year 4.</li>
+                    </ul>
+                    <p>The grant remains subject to continued service, vesting milestones and final board documentation.</p>
+                    <a href="https://drive.google.com/file/d/1pMhDAD0eWeD277Inq4Pvr1A9CQxAUTKd/view?usp=sharing" target="_blank" class="file-card type-pdf" style="max-width: 460px; margin-top: 22px;">
+                        <div class="file-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">View Official Certificate (PDF)</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Drive · 1,000 shares</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 9. TEAM -->
+            <section id="team" class="section">
+                <h1 class="page-title">Team &amp; Growth</h1>
+                <p class="lead">The right blend of operational, technical and startup-scaling experience (YC alumni playbook), supercharged by AI.</p>
+
+                <div class="grid-3">
+                    <div class="info-card" style="padding: 26px; text-align: center;">
+                        <img src="assets/bastian.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Bastian+Vasquez&background=F4ECFB&color=5B2A86&size=100&rounded=true'" style="width: 96px; height: 96px; object-fit: cover; border-radius: 50%; margin-bottom: 16px; border: 3px solid var(--primary-fade); box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 18px; justify-content: center; margin-bottom: 6px;">Bastián Vásquez <a href="https://www.linkedin.com/in/bastian-vasquez-592130175/" target="_blank" style="color: #0077B5; font-size: 16px; margin-left: 4px; text-decoration: none;"><i class="fa-brands fa-linkedin"></i></a></h4>
+                        <span class="badge primary" style="margin-bottom: 14px;">CEO &amp; Co-Founder</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Commercial leadership, operations and product vision. Architect of the fulfillment flows that guarantee corporate SLAs, and responsible for B2B partnership expansion.</p>
+                    </div>
+                    <div class="info-card" style="padding: 26px; text-align: center;">
+                        <img src="assets/sebastian.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Sebastian+Aburto&background=F4ECFB&color=5B2A86&size=100&rounded=true'" style="width: 96px; height: 96px; object-fit: cover; border-radius: 50%; margin-bottom: 16px; border: 3px solid var(--primary-fade); box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 18px; justify-content: center; margin-bottom: 6px;">Sebastián Aburto <a href="https://www.linkedin.com/in/sebastian-a-lopez/?skipRedirect=true" target="_blank" style="color: #0077B5; font-size: 16px; margin-left: 4px; text-decoration: none;"><i class="fa-brands fa-linkedin"></i></a></h4>
+                        <span class="badge primary" style="margin-bottom: 14px;">CTO &amp; Co-Founder</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Strategic technology lead. Specialist in scalable software architecture, operational automation and rapid PWA/SaaS infrastructure deployment.</p>
+                    </div>
+                    <div class="info-card" style="padding: 26px; text-align: center;">
+                        <img src="assets/alejandro.avif" onerror="this.src='https://ui-avatars.com/api/?name=Alejandro+Gomez&background=F3EEFA&color=7A7592&size=100&rounded=true'" style="width: 96px; height: 96px; object-fit: cover; border-radius: 50%; margin-bottom: 16px; border: 3px solid var(--border-light); box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 18px; justify-content: center; margin-bottom: 6px;">Alejandro Gómez <a href="https://www.linkedin.com/in/ale-gs/" target="_blank" style="color: #0077B5; font-size: 16px; margin-left: 4px; text-decoration: none;"><i class="fa-brands fa-linkedin"></i></a></h4>
+                        <span class="badge" style="margin-bottom: 14px;">Tech Lead</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Owns execution of tech infrastructure, B2B APIs and mission-critical database management. Retention locked: 20% vesting over 4 years.</p>
+                    </div>
+                </div>
+                <div class="grid-2" style="grid-template-columns: 1fr;">
+                    <div class="info-card highlight" style="display: flex; gap: 20px; align-items: center; padding: 24px;">
+                        <div style="flex-shrink: 0;"><i class="fa-solid fa-robot" style="font-size: 50px; color: var(--primary-light); filter: drop-shadow(0 4px 8px rgba(139,92,246,0.35));"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 6px; font-size: 17px;">Rocket <span class="badge" style="background: var(--primary-light); color: white; margin-left: 6px; border: none;">AI Agent</span></h4>
+                            <p style="font-size: 13px; margin: 0; color: var(--text-main); line-height: 1.55;">Natively integrated autonomous agent (Gemini-powered). Rocket supports team administration, task creation, deployment workflows, notifications, gap detection, operational alerts, and customer support. It functions as LiLi's formal "JARVIS-like" operational layer: continuously analyzing data, orchestrating execution, and shipping code &amp; documentation <strong>5x faster</strong> than a traditional team.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 40px;"><h3>Board of Advisors · Operator-Investors with Real Exits</h3></div>
+                <div class="grid-3">
+                    <div class="info-card" style="padding: 26px;">
+                        <h4 style="font-size: 16px; margin-bottom: 6px;">Cristián Tala</h4>
+                        <span class="badge primary" style="margin-bottom: 12px;">Serial Founder · $23M Exit</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Solo-founder who scaled and sold <strong>Pago Fácil</strong> to <strong>BCI &amp; EVO Payments for $23M USD (2021)</strong>. Hands-on playbook for fintech / payments scaling across LATAM.</p>
+                    </div>
+                    <div class="info-card" style="padding: 26px;">
+                        <h4 style="font-size: 16px; margin-bottom: 6px;">Federico Iriberry</h4>
+                        <span class="badge primary" style="margin-bottom: 12px;">Co-Founder · Broota</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Angel investor and co-founder of <strong>Broota</strong>, Chile's leading equity-crowdfunding platform for high-impact startups. Capital markets &amp; fundraising expertise.</p>
+                    </div>
+                    <div class="info-card" style="padding: 26px;">
+                        <h4 style="font-size: 16px; margin-bottom: 6px;">David Peña</h4>
+                        <span class="badge primary" style="margin-bottom: 12px;">Co-Founder · $70M Exit</span>
+                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.55;">Tech entrepreneur who co-founded and scaled <strong>ComunidadFeliz</strong> through to its <strong>$70M USD exit to Visma (2024)</strong>. Vertical SaaS playbook for property/real-estate, the same buyer profile LiLi serves.</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 40px;"><h3>Mediatic Impact &amp; Recognition</h3></div>
+                <div class="grid-3">
+                    <div class="info-card" style="padding: 22px;">
+                        <h4 style="font-size: 15px;"><i class="fa-solid fa-star text-primary"></i> Top-100 Startups of the Decade</h4>
+                        <p style="font-size: 13px; color: var(--text-muted);">Recognized by an expert panel of 100 innovation leaders as one of the 100 most promising startups founded since 2015.</p>
+                    </div>
+                    <div class="info-card" style="padding: 22px;">
+                        <h4 style="font-size: 15px;"><i class="fa-solid fa-tv text-primary"></i> National TV Coverage</h4>
+                        <p style="font-size: 13px; color: var(--text-muted);">Featured as market experts on Chilean national TV networks to comment on the home-services and informality landscape in LATAM.</p>
+                    </div>
+                    <div class="info-card" style="padding: 22px;">
+                        <h4 style="font-size: 15px;"><i class="fa-solid fa-podcast text-primary"></i> Featured Radio Guests</h4>
+                        <p style="font-size: 13px; color: var(--text-muted);">Invited by national radio stations as the formalization solution for professionals across the country.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. LEGAL -->
+            <section id="legal" class="section">
+                <h1 class="page-title">Legal, QA &amp; Compliance</h1>
+                <p class="lead">Corporate protection, full risk mitigation, and certifications that validate our traction.</p>
+
+                <div class="section-header"><h3>External Validations &amp; Registered IP</h3></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
+                    <span class="badge primary" style="font-size: 13px; padding: 9px 18px;"><i class="fa-solid fa-trademark"></i> Trademark Registered · INAPI 2025 (Title 46089)</span>
+                    <span class="badge primary" style="font-size: 13px; padding: 9px 18px;"><i class="fa-solid fa-award"></i> Start-Up Chile (BUILD 9)</span>
+                    <span class="badge primary" style="font-size: 13px; padding: 9px 18px;"><i class="fa-solid fa-award"></i> Start-Up Chile (IGNITE 10)</span>
+                    <span class="badge" style="font-size: 13px; padding: 9px 18px;">Incuba UDD</span>
+                    <span class="badge" style="font-size: 13px; padding: 9px 18px;">Start Fellowship</span>
+                    <span class="badge" style="font-size: 13px; padding: 9px 18px;"><i class="fa-solid fa-id-card"></i> D-U-N-S® Registered</span>
+                </div>
+
+                <div class="grid-2">
+                    <div class="info-card">
+                        <h4><i class="fa-solid fa-user-shield text-primary"></i> Zero-Tolerance Quality Control</h4>
+                        <p>Professionals handling gas, electrical or critical installations carry verified <strong>SEC</strong> credentials. The system automatically expels SLA offenders. End-customer NPS dictates a pro's permanence and dispatch priority inside the math model.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h4><i class="fa-solid fa-shield-halved text-success"></i> All-Risk Policy (SURA)</h4>
+                        <p>To protect end customers and remove B2B corporate friction, LiLi SpA holds an active <strong>General Liability &amp; Enterprise Policy</strong>:</p>
+                        <ul class="custom-list">
+                            <li><strong>Insurer:</strong> SURA (via Simplee).</li>
+                            <li><strong>Insured Amount:</strong> 5,000 UF (~$200k USD).</li>
+                            <li><strong>Coverage:</strong> "All-risk" across Chile (third-party damage).</li>
+                            <li><strong>Term:</strong> March 2026 – March 2027.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. FILES -->
+            <section id="files" class="section">
+                <h1 class="page-title">Document Index</h1>
+                <p class="lead">Supporting documentation curated for due diligence. Items marked <span class="badge" style="font-size:11px; padding:3px 9px; vertical-align:middle;"><i class="fa-solid fa-lock"></i> NDA</span> are released after a signed NDA.</p>
+
+                <div class="section-header"><h3>Pitch &amp; Strategy</h3></div>
+                <div class="file-grid">
+                    <a href="https://drive.google.com/file/d/1hgLC55Fj7Rlk9rWAi27sxzVwhmlgPfSy/view?usp=sharing" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Master Pitch Deck 2026</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Drive · Main Deck</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Pitch Deck LiLi - The Pitch.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Investor Deck · The Pitch (Latest)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="https://docs.google.com/document/d/1tCh617fG-4bRavuFreJlhHNfXijoE0Id/edit?usp=sharing&amp;ouid=118373639128293890241&amp;rtpof=true&amp;sd=true" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-rocket"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Plan Comercial &amp; GTM 2026</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Docs · Strategy</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="TAM Básico.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">TAM / SAM / SOM Model</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header" style="margin-top: 32px;"><h3>Financials &amp; Traction</h3></div>
+                <div class="file-grid">
+                    <a href="https://docs.google.com/spreadsheets/d/1cW805NFRZusgrn3rmqrwYxwZN_TV288t4CwJLmPon6w/edit?usp=sharing" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-file-excel"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">LiLi SpA Cash Flow Model</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Sheets · P&amp;L</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Estados Financieros - LiLi.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Financial Statements (Actuals)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · <span style="color:var(--accent-orange);">NDA</span></div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="pedidos_all_all_2026-04-15.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Consolidated Orders (Jul-25 → Apr-26)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · Traction data</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Estados de Cuenta 2024-2025 (8 months)" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Bank Statements (8 months)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · <span style="color:var(--accent-orange);">NDA</span></div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header" style="margin-top: 32px;"><h3>Legal &amp; Corporate</h3></div>
+                <div class="file-grid">
+                    <a href="https://drive.google.com/file/d/1whiYEM0CDVsLOGJFNjvJpKXAXzYDvK3Q/view?usp=sharing" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Certificate of Incorporation &amp; SII</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Drive · Corporate</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Certificado de Vigencia.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-stamp"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Certificate of Good Standing</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Certificado de Estatuto Actualizado.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-scroll"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Updated Bylaws Certificate</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Título de marca 2025_46089.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-trademark"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">INAPI Trademark Title (Reg. 46089)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · IP</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Poliza RC Simplee N 7313120.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">SURA All-Risk Liability Policy</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · 5,000 UF</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Términos y Condiciones LiLi.docx" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-file-contract"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Terms &amp; Conditions</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header" style="margin-top: 32px;"><h3>Cap Table &amp; Fundraising</h3></div>
+                <div class="file-grid">
+                    <a href="https://drive.google.com/file/d/1pMhDAD0eWeD277Inq4Pvr1A9CQxAUTKd/view?usp=sharing" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Official Cap Table Certificate</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Drive · Equity</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Postmoney Safe - Valuation Cap Only - FINAL.docx" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">YC Post-Money SAFE (Valuation Cap)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · Round Vehicle</div>
+                        </div>
+                    </a>
+                    <a href="https://docs.google.com/document/d/1F97jOD36hyX_xJJlfpPmePKPLOHPwRZT/edit?usp=sharing&amp;ouid=118373639128293890241&amp;rtpof=true&amp;sd=true" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-file-word"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">SAFE Template (Ordinary Shares)</div>
+                            <div class="file-meta"><i class="fa-solid fa-cloud"></i> Google Docs · Legal</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Stripe Atlas Mutual NDA - FORM.docx" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-user-secret"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Mutual NDA (Stripe Atlas)</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · For DD</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header" style="margin-top: 32px;"><h3>Partners, Contracts &amp; Pricing</h3></div>
+                <div class="file-grid">
+                    <a href="09_Legal_Corporate/Contrato%20Lili%20SPA%20-%20firmado%20.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Sodimac Contract (Signed)</div>
+                            <div class="file-meta"><i class="fa-solid fa-file-pdf"></i> Local file · PDF</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Tarifario_LiLi_Sodimac.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-tags"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">B2B Tariff · Sodimac</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Tarifario_LiLi_Sura_Mano de Obra.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-tags"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">B2B Tariff · SURA</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Tarifario_LiLi_Auxilia_Mano de Obra.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-tags"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">B2B Tariff · Auxilia</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Tarifario_LiLi_Easy_Mano de Obra.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-tags"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">B2B Tariff · Easy</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="AA COC Business Partner 2022.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-handshake-simple"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Assa Abloy · Business Partner Agreement</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Contrato RedCumbre.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-handshake-simple"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">RedCumbre · Service Agreement</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="section-header" style="margin-top: 32px;"><h3>Validation &amp; Brand</h3></div>
+                <div class="file-grid">
+                    <a href="#" data-pending="Carta de recomendación - Cristián Tala.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-quote-right"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Recommendation Letter · Cristián Tala</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending · Advisor</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Summary of Information BIG 10 - LiLi.docx" target="_blank" class="file-card type-doc">
+                        <div class="file-icon"><i class="fa-solid fa-award"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Start-Up Chile BIG 10 · Summary</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="Manual de marca - LiLi 2025.pdf" target="_blank" class="file-card type-pdf">
+                        <div class="file-icon"><i class="fa-solid fa-palette"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Brand Book 2025</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                    <a href="#" data-pending="liliapp.cl-Coverage-2025-12-16.xlsx" target="_blank" class="file-card type-xls">
+                        <div class="file-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">Geographic Coverage Map</div>
+                            <div class="file-meta"><i class="fa-solid fa-link-slash"></i> Pending Drive link</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Legal Disclaimer Footer -->
+            <div style="text-align: center; margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 12px; margin-bottom: 24px;">
+                <p style="margin-bottom: 6px;"><strong>Strictly Confidential &amp; Proprietary.</strong> Do not distribute, reproduce or share without written permission from LiLi SpA Founders.</p>
+                <p>&copy; 2026 LiLi SpA. All rights reserved.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        // Cache original HTML for search functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.dataset.originalHTML = sec.innerHTML;
+            });
+
+            // Disable navigation for pending document links
+            document.querySelectorAll('.file-card[data-pending]').forEach(card => {
+                card.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    const name = card.getAttribute('data-pending') || 'this document';
+                    alert(`"${name}" will be available shortly. Request access at bastian@liliapp.cl`);
+                });
+            });
+        });
+
+        // ============================================================
+        // SPLASH SCREEN — dismiss on CTA click, Enter, Space, or touch
+        // ============================================================
+        function dismissSplash() {
+            const splash = document.getElementById('lili-splash');
+            if (!splash) return;
+            splash.classList.add('dismissed');
+            splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+            // Make the sidebar/main accessible again
+            document.body.style.overflow = '';
+        }
+
+        (function () {
+            const splash = document.getElementById('lili-splash');
+            if (!splash) return;
+            // Prevent background scroll while splash is up
+            document.body.style.overflow = 'hidden';
+
+            // Keyboard: Enter or Space
+            document.addEventListener('keydown', function splashKey(e) {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+                    e.preventDefault();
+                    dismissSplash();
+                    document.removeEventListener('keydown', splashKey);
+                }
+            }, { passive: false });
+        })();
+
+        // Tab Switcher
+        function switchTab(tabId, evt) {
+            const e = evt || window.event;
+            const searchInput = document.getElementById('search-input');
+            if (searchInput.value !== '') {
+                searchInput.value = '';
+                handleSearch();
+            }
+
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+
+            const iconHtml = e.currentTarget.querySelector('i').outerHTML;
+            const titleText = e.currentTarget.innerText;
+
+            document.querySelectorAll('.section').forEach(el => {
+                el.classList.remove('active');
+                el.style.display = '';
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('current-section-title').innerHTML = `${iconHtml} ${titleText}`;
+            document.querySelector('.main-wrapper').scrollTo(0, 0);
+
+            // Re-trigger stagger reveal animation on every tab change
+            const active = document.getElementById(tabId);
+            active.classList.remove('active');
+            void active.offsetWidth; // force reflow
+            active.classList.add('active');
+
+            // Animate KPI counters in the newly activated section
+            animateCounters(active);
+        }
+
+        // ===== KPI counter animation =====
+        function animateCounters(scope) {
+            const els = scope.querySelectorAll('.kpi-value');
+            els.forEach(el => {
+                if (el.dataset.animated === '1') return;
+                const raw = el.textContent.trim();
+                // Match leading optional symbols + a number (with optional decimal) + trailing unit (K, M, B, %, +, etc.)
+                const m = raw.match(/^([^\d\-]*)(-?\d+(?:[\.,]\d+)?)(.*)$/);
+                if (!m) return;
+                const prefix = m[1];
+                const numStr = m[2].replace(',', '.');
+                const suffix = m[3];
+                const target = parseFloat(numStr);
+                if (!isFinite(target)) return;
+                const decimals = (numStr.split('.')[1] || '').length;
+                const duration = 1100;
+                const start = performance.now();
+                el.dataset.animated = '1';
+                function tick(now) {
+                    const t = Math.min(1, (now - start) / duration);
+                    // easeOutCubic
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    const val = target * eased;
+                    el.textContent = prefix + val.toFixed(decimals) + suffix;
+                    if (t < 1) requestAnimationFrame(tick);
+                    else el.textContent = prefix + target.toFixed(decimals) + suffix;
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+
+        // Scroll progress bar
+        (function () {
+            const bar = document.getElementById('scroll-progress');
+            const wrap = document.querySelector('.main-wrapper');
+            if (!bar || !wrap) return;
+            wrap.addEventListener('scroll', () => {
+                const max = wrap.scrollHeight - wrap.clientHeight;
+                const ratio = max > 0 ? wrap.scrollTop / max : 0;
+                bar.style.transform = 'scaleX(' + ratio + ')';
+            }, { passive: true });
+        })();
+
+        // Initial counter run on load
+        window.addEventListener('load', () => {
+            const initial = document.querySelector('.section.active');
+            if (initial) animateCounters(initial);
+        });
+
+        // Live Search with Highlights
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.section');
+            const titleEl = document.getElementById('current-section-title');
+
+            if (query.length < 2) {
+                sections.forEach(s => {
+                    s.classList.remove('search-result');
+                    s.style.display = '';
+                    s.innerHTML = s.dataset.originalHTML;
+                });
+
+                const activeNav = document.querySelector('.nav-item.active');
+                if (activeNav) {
+                    const iconHtml = activeNav.querySelector('i').outerHTML;
+                    titleEl.innerHTML = `${iconHtml} ${activeNav.innerText}`;
+                    const id = activeNav.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                    document.getElementById(id).classList.add('active');
+                }
+                return;
+            }
+
+            titleEl.innerHTML = `<i class="fa-solid fa-magnifying-glass" style="color: var(--primary);"></i> Search results for: "${query}"`;
+
+            let foundAny = false;
+            sections.forEach(s => {
+                s.innerHTML = s.dataset.originalHTML;
+                const textContent = s.innerText.toLowerCase();
+                if (textContent.includes(query)) {
+                    s.classList.add('search-result');
+                    s.style.display = 'block';
+                    foundAny = true;
+                    highlightText(s, query);
+                } else {
+                    s.classList.remove('search-result');
+                    s.style.display = 'none';
+                }
+            });
+
+            if (!foundAny) {
+                titleEl.innerHTML = `<i class="fa-solid fa-circle-xmark" style="color: var(--accent-red);"></i> No results for: "${query}"`;
+            }
+        }
+
+        function highlightText(element, query) {
+            const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            const walkDOM = (node) => {
+                if (node.nodeType === 3) {
+                    const match = node.data.match(regex);
+                    if (match) {
+                        const span = document.createElement('span');
+                        span.innerHTML = node.data.replace(regex, '<mark>$1</mark>');
+                        node.parentNode.replaceChild(span, node);
+                    }
+                } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE', 'MARK', 'I', 'svg'].includes(node.nodeName)) {
+                    for (let i = 0; i < node.childNodes.length; i++) {
+                        walkDOM(node.childNodes[i]);
+                    }
+                }
+            };
+            walkDOM(element);
+        }
+
+        // Dropdown Contacts
+        function toggleContactDropdown() {
+            const menu = document.getElementById('contactMenu');
+            menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+        }
+
+        function copyToClipboard(text, evt) {
+            const e = evt || window.event;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = e.currentTarget;
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = `<i class="fa-solid fa-check" style="color: var(--secondary);"></i> Copied!`;
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    document.getElementById('contactMenu').style.display = 'none';
+                }, 1500);
+            }).catch(err => console.error('Copy error: ', err));
+        }
+
+        // Charts
+        document.addEventListener('DOMContentLoaded', function () {
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (event) {
+                const dropdown = document.querySelector('.contact-dropdown');
+                const menu = document.getElementById('contactMenu');
+                if (dropdown && !dropdown.contains(event.target) && menu) {
+                    menu.style.display = 'none';
+                }
+            });
+
+            Chart.defaults.font.family = "'Plus Jakarta Sans', 'Inter', sans-serif";
+            Chart.defaults.color = '#7A7592';
+
+            // Cumulative Revenue (USD) — actuals + projection
+            const arrCtx = document.getElementById('arrChart');
+            if (arrCtx) {
+                const gradient = arrCtx.getContext('2d').createLinearGradient(0, 0, 0, 220);
+                gradient.addColorStop(0, 'rgba(91, 42, 134, 0.28)');
+                gradient.addColorStop(1, 'rgba(91, 42, 134, 0)');
+                new Chart(arrCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Q3 2024', 'Q1 2025', 'Q2 2025', 'Q3 2025', 'Q1 2026', 'Q2 2026 Projection'],
+                        datasets: [{
+                            label: 'Cumulative Revenue (USD)',
+                            data: [3000, 25000, 52000, 58000, 66000, 81000],
+                            borderColor: '#5B2A86',
+                            backgroundColor: gradient,
+                            borderWidth: 3,
+                            pointBackgroundColor: ctx => ctx.dataIndex === 5 ? '#0F0817' : '#5B2A86',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            fill: true,
+                            tension: 0.35,
+                            segment: {
+                                borderColor: ctx => ctx.p1DataIndex === 5 ? '#0F0817' : '#5B2A86',
+                                borderDash: ctx => ctx.p1DataIndex === 5 ? [] : []
+                            }
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: ctx => '$' + (ctx.parsed.y / 1000).toLocaleString('en-US', { maximumFractionDigits: 1 }) + 'k USD'
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                suggestedMax: 100000,
+                                grid: { color: '#F3EEFA' },
+                                ticks: { stepSize: 20000, callback: v => v / 1000 }
+                            },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+
+            // Use of Funds
+            const fundsCtx = document.getElementById('fundsChart');
+            if (fundsCtx) {
+                new Chart(fundsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Growth & Enterprise Sales (40%)', 'Product & Integrations (35%)', 'Operations & Network Expansion (25%)'],
+                        datasets: [{
+                            data: [40, 35, 25],
+                            backgroundColor: ['#5B2A86', '#10B981', '#F59E0B'],
+                            borderWidth: 3,
+                            borderColor: '#ffffff',
+                            hoverOffset: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'right', labels: { usePointStyle: true, padding: 18, font: { size: 12, weight: '500' } } } },
+                        cutout: '68%'
+                    }
+                });
+            }
+
+            // Cap Table
+            const capCtx = document.getElementById('capTableChart');
+            if (capCtx) {
+                new Chart(capCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Bastián V. (55%)', 'Sebastián A. (45%)'],
+                        datasets: [
+                            {
+                                label: 'Current Ownership',
+                                data: [55, 45],
+                                backgroundColor: ['#4C1D95', '#8B5CF6'],
+                                borderWidth: 2,
+                                borderColor: '#ffffff',
+                                hoverOffset: 8,
+                                radius: '100%',
+                                cutout: '62%'
+                            },
+                            {
+                                label: 'Alejandro Vesting Split',
+                                // 20% total vesting split proportionally from founders: 11% + 9%
+                                data: [11, 9, 80],
+                                backgroundColor: ['rgba(196, 168, 239, 0.95)', 'rgba(233, 223, 251, 0.95)', 'rgba(148, 163, 184, 0.16)'],
+                                borderColor: '#ffffff',
+                                borderWidth: 1,
+                                hoverOffset: 4,
+                                radius: '58%',
+                                cutout: '38%'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        rotation: -90,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (ctx) => {
+                                        if (ctx.datasetIndex === 0 && ctx.dataIndex === 0) return 'Bastián V. current ownership: 55%';
+                                        if (ctx.datasetIndex === 0 && ctx.dataIndex === 1) return 'Sebastián A. current ownership: 45%';
+                                        if (ctx.datasetIndex === 1 && ctx.dataIndex === 0) return 'Alejandro allocation from Bastián: 11%';
+                                        if (ctx.datasetIndex === 1 && ctx.dataIndex === 1) return 'Alejandro allocation from Sebastián: 9%';
+                                        return 'Unissued / not yet vested: 80%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
